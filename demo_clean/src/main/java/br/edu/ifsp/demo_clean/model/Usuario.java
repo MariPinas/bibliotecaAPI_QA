@@ -1,42 +1,55 @@
 package br.edu.ifsp.demo_clean.model;
 
-import br.edu.ifsp.demo_clean.model.enums.StatusUsuario;
+import br.edu.ifsp.demo_clean.model.enums.*;
+import jakarta.persistence.*;
 
-public abstract class Usuario {
+@Entity
+@Table(name = "usuarios")
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, unique = true, length = 11)
     private String cpf;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CategoriaUsuario categoria;
+
+    @Enumerated(EnumType.STRING)
+    private Curso curso;
+
+    @Enumerated(EnumType.STRING)
     private StatusUsuario status;
 
-    public Usuario(String nome, String cpf) {
+    public Usuario() {}
+
+    public Usuario(String nome, String cpf, CategoriaUsuario categoria, Curso curso, StatusUsuario status) {
         this.nome = nome;
         this.cpf = cpf;
-        this.status = StatusUsuario.ATIVO;
+        this.categoria = categoria;
+        this.curso = categoria == CategoriaUsuario.ALUNO ? curso : null;
+        this.status = categoria == CategoriaUsuario.ALUNO ? status : null;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public int getId() { return id; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public String getCpf() {
-        return cpf;
-    }
+    public String getCpf() { return cpf; }
+    public void setCpf(String cpf) { this.cpf = cpf; }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+    public CategoriaUsuario getCategoria() { return categoria; }
+    public void setCategoria(CategoriaUsuario categoria) { this.categoria = categoria; }
 
-    public StatusUsuario getStatus() {
-        return status;
-    }
+    public Curso getCurso() { return curso; }
+    public void setCurso(Curso curso) { this.curso = curso; }
 
-    public void setStatus(StatusUsuario status) {
-        this.status = status;
-    }
-
-
-    public abstract String getTipo();
+    public StatusUsuario getStatus() { return status; }
+    public void setStatus(StatusUsuario status) { this.status = status; }
 }

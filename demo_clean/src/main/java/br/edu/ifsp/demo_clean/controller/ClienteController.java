@@ -3,10 +3,7 @@ package br.edu.ifsp.demo_clean.controller;
 import br.edu.ifsp.demo_clean.service.ClienteService;
 import org.springframework.web.bind.annotation.*;
 
-import br.edu.ifsp.demo_clean.model.Carro;
 import br.edu.ifsp.demo_clean.model.Cliente;
-import br.edu.ifsp.demo_clean.model.Venda;
-import br.edu.ifsp.demo_clean.service.VendaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.*;
