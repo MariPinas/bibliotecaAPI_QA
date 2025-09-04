@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/library")
 @Tag(name = "Usuario", description = "Responsável por controlar os usuários da biblioteca")
 public class UsuarioController {
 
@@ -19,7 +19,7 @@ public class UsuarioController {
         }
 
         @PostMapping("/usuario")
-        public String salvaUsuario(@RequestBody Usuario u){
+        public String addUsuario(@RequestBody Usuario u){
                 usuarioService.addUsuario(u);
                 return "ok usuario";
         }

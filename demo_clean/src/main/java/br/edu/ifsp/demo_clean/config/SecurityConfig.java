@@ -16,7 +16,7 @@ public class SecurityConfig {
                     "/swagger-ui/**",    
                     "/swagger-ui.html",
                     "/h2-console/**",
-                    "/api/**"      
+                    "/library/**"
                 ).permitAll()
                 .anyRequest().authenticated() 
             )
