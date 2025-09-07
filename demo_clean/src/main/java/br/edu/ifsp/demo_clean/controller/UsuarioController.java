@@ -19,8 +19,8 @@ public class UsuarioController {
         }
 
         @PostMapping("/usuario")
-        public String addUsuario(@RequestBody Usuario u){
-                usuarioService.addUsuario(u);
+        public String addUsuario(@RequestBody Usuario usuario){
+                usuarioService.addUsuario(usuario);
                 return "ok usuario";
         }
 
