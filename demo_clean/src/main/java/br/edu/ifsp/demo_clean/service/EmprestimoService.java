@@ -17,9 +17,9 @@ import java.util.Optional;
 
 @Service
 public class EmprestimoService {
-    private EmprestimoRepository emprestimoRepository;
-    private UsuarioRepository usuarioRepository;
-    private EstoqueRepository estoqueRepository;
+    private final EmprestimoRepository emprestimoRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final EstoqueRepository estoqueRepository;
 
     public EmprestimoService(EmprestimoRepository emprestimoRepository, UsuarioRepository usuarioRepository, EstoqueRepository estoqueRepository) {
         this.emprestimoRepository = emprestimoRepository;
