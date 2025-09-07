@@ -88,7 +88,9 @@ public class EmprestimoService {
         }
 
         emprestimo.get().dataDevolucao = LocalDate.now();
+        emprestimo.get().exemplar.setDisponibilidade(true);
         emprestimoRepository.save(emprestimo.get());
+        estoqueRepository.save(emprestimo.get().exemplar);
         return "Devolução cadastrada com sucesso!";
     }
 
