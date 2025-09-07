@@ -2,6 +2,8 @@ package br.edu.ifsp.demo_clean.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 public class Estoque {
     @Id
@@ -9,6 +11,9 @@ public class Estoque {
 
     @Column(nullable = false)
     private boolean disponibilidade;
+
+    @ManyToOne
+    public Livro livro;
 
     public int getCodigoExemplar() {
         return codigoExemplar;

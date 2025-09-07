@@ -1,9 +1,9 @@
 package br.edu.ifsp.demo_clean.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import br.edu.ifsp.demo_clean.model.enums.Curso;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Livro {
@@ -17,6 +17,10 @@ public class Livro {
     public String autor;
     public String editora;
     public String edicao;
+    public Curso categoria;
+
+    @OneToMany(mappedBy = "livro")
+    public List<Estoque> exemplares;
 
     public Livro() {
     }

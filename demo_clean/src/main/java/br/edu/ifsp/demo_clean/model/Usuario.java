@@ -3,6 +3,9 @@ package br.edu.ifsp.demo_clean.model;
 import br.edu.ifsp.demo_clean.model.enums.*;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -25,6 +28,9 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     private StatusUsuario status;
+
+    @OneToMany(mappedBy = "usuario")
+    public List<Emprestimo> emprestimos = new ArrayList<>();
 
     public Usuario() {}
 
@@ -52,4 +58,8 @@ public class Usuario {
 
     public StatusUsuario getStatus() { return status; }
     public void setStatus(StatusUsuario status) { this.status = status; }
+
+    public int totalEmprestimosAtivos() {
+        return this.emprestimos.stream().filter(emprestimo -> !emprestimo.emprestimoFinalizado()).toList().size();
+    }
 }
