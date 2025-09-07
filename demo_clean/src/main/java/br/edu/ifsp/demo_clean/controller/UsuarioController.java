@@ -1,5 +1,6 @@
 package br.edu.ifsp.demo_clean.controller;
 
+import br.edu.ifsp.demo_clean.dto.UsuarioDTO;
 import br.edu.ifsp.demo_clean.model.Usuario;
 import br.edu.ifsp.demo_clean.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,13 +20,47 @@ public class UsuarioController {
         }
 
         @PostMapping("/usuario")
-        public String addUsuario(@RequestBody Usuario usuario){
-                usuarioService.addUsuario(usuario);
-                return "ok usuario";
+        public String addUsuario(@RequestBody UsuarioDTO dto){
+                try{
+                        Usuario novoUsuario = usuarioService.addUsuario(dto);
+                        return "Usuário Cadastrado:\n" + novoUsuario.toString();
+                } catch (Error ex){
+                        return ex.getMessage();
+                }
         }
 
         @GetMapping("/usuario")
-        public List<Usuario> todosUsuarios(){
-                return usuarioService.todosUsuarios();
+        public String listarUsuarios(){
+                return usuarioService.listarUsuarios();
+        }
+
+        @GetMapping("/usuario/{cpf}")
+        public String buscarUsuario(@PathVariable String cpf){
+                try{
+                        Usuario usuario = usuarioService.buscarUsuario(cpf);
+                        return usuario.toString();
+                } catch (Error ex){
+                        return ex.getMessage();
+                }
+        }
+
+        @PutMapping("/usuario/{cpf}")
+        public String attUsuario(@RequestBody UsuarioDTO dto, @PathVariable String cpf){
+                try{
+                        Usuario usuarioAtualizado = usuarioService.attUsuario(dto, cpf);
+                        return "Usuário atualizado:\n" + usuarioAtualizado.toString();
+                } catch (Error ex){
+                        return ex.getMessage();
+                }
+        }
+
+        @DeleteMapping("/usuario/{cpf}")
+        public String deletarUsuario(@PathVariable String cpf){
+                try{
+                        usuarioService.deletarUsuario(cpf);
+                        return "Usuário deletado com sucesso!";
+                } catch (Error ex){
+                        return ex.getMessage();
+                }
         }
 }

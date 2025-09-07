@@ -62,4 +62,17 @@ public class Usuario {
     public int totalEmprestimosAtivos() {
         return this.emprestimos.stream().filter(emprestimo -> !emprestimo.emprestimoFinalizado()).toList().size();
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", categoria=" + categoria +
+                (categoria == CategoriaUsuario.ALUNO ?
+                        ", curso=" + curso + ", status=" + status
+                        : "") +
+                '}';
+    }
 }
