@@ -7,6 +7,7 @@ import br.edu.ifsp.demo_clean.model.enums.StatusUsuario;
 public class UsuarioDTO {
     public String nome;
     public String cpf;
+    public String email;
     public CategoriaUsuario categoria;
     public Curso curso;
     public StatusUsuario status;

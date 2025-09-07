@@ -19,6 +19,9 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CategoriaUsuario categoria;
@@ -34,9 +37,10 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(String nome, String cpf, CategoriaUsuario categoria, Curso curso, StatusUsuario status) {
+    public Usuario(String nome, String cpf, String email, CategoriaUsuario categoria, Curso curso, StatusUsuario status) {
         this.nome = nome;
         this.cpf = cpf;
+        this.email = email;
         this.categoria = categoria;
         this.curso = categoria == CategoriaUsuario.ALUNO ? curso : null;
         this.status = categoria == CategoriaUsuario.ALUNO ? status : null;
@@ -49,6 +53,9 @@ public class Usuario {
 
     public String getCpf() { return cpf; }
     public void setCpf(String cpf) { this.cpf = cpf; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
     public CategoriaUsuario getCategoria() { return categoria; }
     public void setCategoria(CategoriaUsuario categoria) { this.categoria = categoria; }
@@ -69,10 +76,9 @@ public class Usuario {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
                 ", categoria=" + categoria +
-                (categoria == CategoriaUsuario.ALUNO ?
-                        ", curso=" + curso + ", status=" + status
-                        : "") +
+                (categoria == CategoriaUsuario.ALUNO ? ", curso=" + curso + ", status=" + status : "") +
                 '}';
     }
 }

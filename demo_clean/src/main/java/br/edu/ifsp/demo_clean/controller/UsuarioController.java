@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/library")
+@RequestMapping("/library/usuarios")
 @Tag(name = "Usuario", description = "Responsável por controlar os usuários da biblioteca")
 public class UsuarioController {
 
@@ -19,7 +19,7 @@ public class UsuarioController {
                 this.usuarioService = usuarioService;
         }
 
-        @PostMapping("/usuario")
+        @PostMapping
         public String addUsuario(@RequestBody UsuarioDTO dto){
                 try{
                         Usuario novoUsuario = usuarioService.addUsuario(dto);
@@ -29,12 +29,12 @@ public class UsuarioController {
                 }
         }
 
-        @GetMapping("/usuario")
+        @GetMapping
         public String listarUsuarios(){
                 return usuarioService.listarUsuarios();
         }
 
-        @GetMapping("/usuario/{cpf}")
+        @GetMapping("/{cpf}")
         public String buscarUsuario(@PathVariable String cpf){
                 try{
                         Usuario usuario = usuarioService.buscarUsuario(cpf);
@@ -44,7 +44,7 @@ public class UsuarioController {
                 }
         }
 
-        @PutMapping("/usuario/{cpf}")
+        @PutMapping("/{cpf}")
         public String attUsuario(@RequestBody UsuarioDTO dto, @PathVariable String cpf){
                 try{
                         Usuario usuarioAtualizado = usuarioService.attUsuario(dto, cpf);
@@ -54,7 +54,7 @@ public class UsuarioController {
                 }
         }
 
-        @DeleteMapping("/usuario/{cpf}")
+        @DeleteMapping("/{cpf}")
         public String deletarUsuario(@PathVariable String cpf){
                 try{
                         usuarioService.deletarUsuario(cpf);
