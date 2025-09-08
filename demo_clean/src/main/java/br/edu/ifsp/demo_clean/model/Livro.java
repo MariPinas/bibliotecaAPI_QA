@@ -1,6 +1,6 @@
 package br.edu.ifsp.demo_clean.model;
 
-import br.edu.ifsp.demo_clean.model.enums.Curso;
+import br.edu.ifsp.demo_clean.model.enums.CategoriaLivro;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class Livro {
     public String autor;
     public String editora;
     public String edicao;
-    public Curso categoria;
+    public CategoriaLivro categoria;
 
     @OneToMany(mappedBy = "livro")
     public List<Estoque> exemplares;
@@ -25,12 +25,13 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(int isbn, String titulo, String autor, String editora, String edicao) {
+    public Livro(int isbn, String titulo, String autor, String editora, String edicao, CategoriaLivro categoria) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
         this.edicao = edicao;
+        this.categoria = categoria;
     }
 
     public String obterDetalhes(){

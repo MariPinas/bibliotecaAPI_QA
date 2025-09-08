@@ -1,7 +1,10 @@
 package br.edu.ifsp.demo_clean.service;
 
+import br.edu.ifsp.demo_clean.dto.LivroDTO;
 import br.edu.ifsp.demo_clean.model.Livro;
 import br.edu.ifsp.demo_clean.repository.LivroRepository;
+
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,14 +24,31 @@ public class LivroService {
         }
     }
 
-    public void addLivro(Livro livro) {
-        if(this.livroRepository.findById(livro.id).isPresent() || livro.id != 0){
-            throw new Error("ERRO: Não informar ID!!!" + livro.id);
+    public void verificarAutorEditoraEdicao(String autor, String editora, String edicao){
+        if(this.livroRepository.findByAutorAndEditoraAndEdicao(autor, editora, edicao) != null){
+            throw new Error("ERRO: Dados de livro já cadastrados!!!");
         }
+    }
 
-        verificarIsbnExistente(livro.isbn);
+    public Livro addLivro(LivroDTO livroDTO) {
 
-        this.livroRepository.save(livro);
+        verificarIsbnExistente(livroDTO.isbn);
+        verificarAutorEditoraEdicao(
+                livroDTO.autor,
+                livroDTO.editora,
+                livroDTO.edicao
+        );
+
+        Livro novoLivro = new Livro(
+                livroDTO.isbn,
+                livroDTO.titulo,
+                livroDTO.autor,
+                livroDTO.editora,
+                livroDTO.edicao,
+                livroDTO.categoria
+        );
+
+        return this.livroRepository.save(novoLivro);
     }
 
     public String listarLivros() {
@@ -55,19 +75,27 @@ public class LivroService {
                 "Livro não encontrado";
     }
 
-    public Livro attLivro(Livro livroNovo, int isbnBuscado) {
+    public Livro attLivro(LivroDTO livroDTO, int isbnBuscado) {
         Livro livroAtual = this.livroRepository.findByIsbn(isbnBuscado);
 
         if(livroAtual != null){
-            if(livroNovo.isbn != livroAtual.isbn){
-                verificarIsbnExistente(livroNovo.isbn);
+            if(livroDTO.isbn != livroAtual.isbn){
+                verificarIsbnExistente(livroDTO.isbn);
             }
 
-            livroAtual.isbn = livroNovo.isbn;
-            livroAtual.titulo = livroNovo.titulo;
-            livroAtual.autor = livroNovo.autor;
-            livroAtual.edicao = livroNovo.edicao;
-            livroAtual.editora = livroNovo.editora;
+            verificarAutorEditoraEdicao(
+                    livroDTO.autor,
+                    livroDTO.editora,
+                    livroDTO.edicao
+            );
+
+            livroAtual.isbn = livroDTO.isbn;
+            livroAtual.titulo = livroDTO.titulo;
+            livroAtual.autor = livroDTO.autor;
+            livroAtual.edicao = livroDTO.edicao;
+            livroAtual.editora = livroDTO.editora;
+            livroAtual.categoria = livroDTO.categoria;
+
             return this.livroRepository.save(livroAtual);
         }
         else {
@@ -77,7 +105,7 @@ public class LivroService {
 
     public void deletarLivro(int isbn){
         Livro livro = this.livroRepository.findByIsbn(isbn);
-        
+
         if(livro != null){
             this.livroRepository.delete(livro);
         }

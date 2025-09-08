@@ -1,5 +1,6 @@
 package br.edu.ifsp.demo_clean.controller;
 
+import br.edu.ifsp.demo_clean.dto.LivroDTO;
 import br.edu.ifsp.demo_clean.model.Livro;
 import br.edu.ifsp.demo_clean.service.LivroService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,10 +24,10 @@ public class LivroController {
     }
 
     @PostMapping({"/livro"})
-    public String addLivro(@RequestBody Livro livro) {
+    public String addLivro(@RequestBody LivroDTO livroDTO) {
         try{
-            this.livroService.addLivro(livro);
-            return "Livro Cadastrado: \n" + livro.obterDetalhes();
+            Livro novoLivro = this.livroService.addLivro(livroDTO);
+            return "Livro Cadastrado: \n" + novoLivro.obterDetalhes();
         } catch (Error ex){
             return ex.getMessage();
         }
@@ -44,9 +45,10 @@ public class LivroController {
     }
 
     @PutMapping({"/livro/{isbn}"})
-    public String attLivro(@RequestBody Livro livro, int isbn) {
+    public String attLivro(@RequestBody LivroDTO livroDTO, int isbn) {
         try{
-            return this.livroService.attLivro(livro, isbn).obterDetalhes();
+            Livro novoLivro = this.livroService.attLivro(livroDTO, isbn);
+            return novoLivro.obterDetalhes();
         } catch (Error ex){
             return ex.getMessage();
         }
