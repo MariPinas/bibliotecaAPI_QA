@@ -1,6 +1,7 @@
 package br.edu.ifsp.demo_clean.model;
 
 import br.edu.ifsp.demo_clean.model.enums.CategoriaLivro;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class Livro {
     public CategoriaLivro categoria;
 
     @OneToMany(mappedBy = "livro")
+    @JsonIgnoreProperties("estoques")
     public List<Estoque> exemplares;
 
     public Livro() {

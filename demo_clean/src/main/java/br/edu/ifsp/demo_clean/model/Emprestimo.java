@@ -1,6 +1,7 @@
 package br.edu.ifsp.demo_clean.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -14,9 +15,11 @@ public class Emprestimo {
     public int id;
 
     @ManyToOne
+    @JsonBackReference
     public Usuario usuario;
 
     @ManyToOne
+    @JsonBackReference
     public Estoque exemplar;
 
     public LocalDate dataEmprestimo;
@@ -24,6 +27,8 @@ public class Emprestimo {
     public LocalDate dataVencimento;
 
     public LocalDate dataDevolucao;
+
+    public Emprestimo() {}
 
     public Emprestimo(Usuario usuario, Estoque exemplar, LocalDate dataEmprestimo, LocalDate dataVencimento, LocalDate dataDevolucao) {
         this.usuario = usuario;

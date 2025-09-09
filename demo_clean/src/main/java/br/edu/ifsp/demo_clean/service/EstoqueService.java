@@ -44,12 +44,13 @@ public class EstoqueService {
         Livro livro = livroRepository.findByIsbn(estoqueDTO.isbn);
 
         if (livro == null) {
-            throw new Error("ERRO: Não existe um livro com o ID informado!");
+            throw new Error("ERRO: Não existe um livro com o ISBN informado!");
         }
 
         Estoque estoque = new Estoque(
                 estoqueDTO.codigoExemplar,
-                estoqueDTO.disponibilidade
+                estoqueDTO.disponibilidade,
+                livro
         );
 
         this.estoqueRepository.save(estoque);

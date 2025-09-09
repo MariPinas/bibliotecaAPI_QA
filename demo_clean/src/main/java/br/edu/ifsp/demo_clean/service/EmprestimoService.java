@@ -69,7 +69,7 @@ public class EmprestimoService {
     private LocalDate calculaVencimento(Usuario usuario, Livro livro) {
         int dias = usuario.getCategoria().tempoEmprestimo();
 
-        if(usuario.getCategoria().equals(CategoriaUsuario.ALUNO) && livro.categoria.equals(usuario.getCategoria()) ) {
+        if(usuario.getCategoria().equals(CategoriaUsuario.ALUNO) && usuario.getCurso().livroRelacionado(livro.categoria)) {
             dias = 30;
         }
 
