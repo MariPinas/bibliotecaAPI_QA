@@ -4,7 +4,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb798e05-c34a-4bf7-a0aa-943f901acdcf" name="Changes" comment="add model usuario" />
+    <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bibliotecaAPI_QA.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/DemoCleanApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/BookAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/LoanAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/StockAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/UserAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/EmprestimoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/EstoqueController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/LivroController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/UsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/CreateEmprestimoDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/EstoqueDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/LivroDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/UsuarioDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/BookDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/LoanDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/StockDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/interfaces/DTOAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Emprestimo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Estoque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Livro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/CategoriaLivro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/CategoriaUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/Curso.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/StatusUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/EmprestimoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/EstoqueRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/LivroRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/UsuarioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/EmprestimoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/EstoqueService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/LivroService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/UsuarioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/src/test/java/br/edu/ifsp/demo_clean/DemoCleanApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/target/classes/br/edu/ifsp/demo_clean/DemoCleanApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/target/classes/br/edu/ifsp/demo_clean/config/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_clean/target/test-classes/br/edu/ifsp/demo_clean/DemoCleanApplicationTests.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,110 +74,37 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ruhangaratini"
-  }
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 8
 }]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MariPinas/bibliotecaAPI_QA.git",
-    "accountId": "2945e9e2-a70d-4356-9939-c4ea1cf7fb13"
-  }
-}]]></component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="32CP40IjnrZv9f0wv6mfD0qDBec" />
+  <component name="ProjectId" id="337c9VIEult67fL74MLdre2mLMw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/renanmartins/Documents/Sistemas/BibliotecaAPI/bibliotecaAPI_QA&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eb798e05-c34a-4bf7-a0aa-943f901acdcf" name="Changes" comment="" />
-      <created>1756921385721</created>
+      <changelist id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="" />
+      <created>1758671400670</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1756921385721</updated>
+      <updated>1758671400670</updated>
     </task>
-    <task id="LOCAL-00001" summary="add model usuario">
-      <option name="closed" value="true" />
-      <created>1756922750671</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1756922750671</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="master" />
-                </option>
-              </RecentGroup>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="add model usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="add model usuario" />
   </component>
 </project>
