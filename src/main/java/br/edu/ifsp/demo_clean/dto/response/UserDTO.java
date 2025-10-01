@@ -1,19 +1,19 @@
 package br.edu.ifsp.demo_clean.dto.response;
 
-import br.edu.ifsp.demo_clean.model.enums.CategoriaUsuario;
-import br.edu.ifsp.demo_clean.model.enums.Curso;
-import br.edu.ifsp.demo_clean.model.enums.StatusUsuario;
+import br.edu.ifsp.demo_clean.model.enums.UserCategory;
+import br.edu.ifsp.demo_clean.model.enums.Course;
+import br.edu.ifsp.demo_clean.model.enums.UserStatus;
 
 public class UserDTO {
     public final int id;
     public final String name;
     public final String cpf;
     public final String email;
-    public final CategoriaUsuario category;
-    public final Curso course;
-    public final StatusUsuario status;
+    public final UserCategory category;
+    public final Course course;
+    public final UserStatus status;
 
-    public UserDTO(int id, String name, String cpf, String email, CategoriaUsuario category, Curso course, StatusUsuario status) {
+    public UserDTO(int id, String name, String cpf, String email, UserCategory category, Course course, UserStatus status) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;

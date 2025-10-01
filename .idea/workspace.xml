@@ -5,65 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bibliotecaAPI_QA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/HELP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/DemoCleanApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/BookAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/LoanAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/StockAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/adapter/UserAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/EmprestimoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/EstoqueController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/LivroController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/controller/UsuarioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/CreateEmprestimoDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/EstoqueDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/LivroDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/UsuarioDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/BookDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/LoanDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/StockDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/dto/response/UserDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/interfaces/DTOAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Emprestimo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Estoque.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Livro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/CategoriaLivro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/CategoriaUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/Curso.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/model/enums/StatusUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/EmprestimoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/EstoqueRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/LivroRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/repository/UsuarioRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/EmprestimoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/EstoqueService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/LivroService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/java/br/edu/ifsp/demo_clean/service/UsuarioService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/src/test/java/br/edu/ifsp/demo_clean/DemoCleanApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/target/classes/br/edu/ifsp/demo_clean/DemoCleanApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/target/classes/br/edu/ifsp/demo_clean/config/SecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_clean/target/test-classes/br/edu/ifsp/demo_clean/DemoCleanApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/adapter/UserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/adapter/UserAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UsuarioDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/CategoriaUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/UserCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/Curso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/StatusUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/UserStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,10 +35,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="337c9VIEult67fL74MLdre2mLMw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -94,7 +49,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true"
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/aluno/Desktop/bibliotecaAPI_QA"
   }
 }]]></component>
   <component name="TaskManager">
@@ -106,5 +63,16 @@
       <updated>1758671400670</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

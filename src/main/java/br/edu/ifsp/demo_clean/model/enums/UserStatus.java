@@ -1,6 +1,6 @@
 package br.edu.ifsp.demo_clean.model.enums;
 
-public enum StatusUsuario {
+public enum UserStatus {
     ATIVO,
     INATIVO,
     SUSPENSO

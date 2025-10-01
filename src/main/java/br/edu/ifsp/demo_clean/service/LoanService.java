@@ -4,12 +4,12 @@ import br.edu.ifsp.demo_clean.dto.Result;
 import br.edu.ifsp.demo_clean.model.Loan;
 import br.edu.ifsp.demo_clean.model.Estoque;
 import br.edu.ifsp.demo_clean.model.Livro;
-import br.edu.ifsp.demo_clean.model.Usuario;
-import br.edu.ifsp.demo_clean.model.enums.CategoriaUsuario;
-import br.edu.ifsp.demo_clean.model.enums.StatusUsuario;
+import br.edu.ifsp.demo_clean.model.User;
+import br.edu.ifsp.demo_clean.model.enums.UserCategory;
+import br.edu.ifsp.demo_clean.model.enums.UserStatus;
 import br.edu.ifsp.demo_clean.repository.EmprestimoRepository;
 import br.edu.ifsp.demo_clean.repository.EstoqueRepository;
-import br.edu.ifsp.demo_clean.repository.UsuarioRepository;
+import br.edu.ifsp.demo_clean.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,12 +19,12 @@ import java.util.Optional;
 @Service
 public class LoanService {
     private final EmprestimoRepository emprestimoRepository;
-    private final UsuarioRepository usuarioRepository;
+    private final UserRepository userRepository;
     private final EstoqueRepository estoqueRepository;
 
-    public LoanService(EmprestimoRepository emprestimoRepository, UsuarioRepository usuarioRepository, EstoqueRepository estoqueRepository) {
+    public LoanService(EmprestimoRepository emprestimoRepository, UserRepository userRepository, EstoqueRepository estoqueRepository) {
         this.emprestimoRepository = emprestimoRepository;
-        this.usuarioRepository = usuarioRepository;
+        this.userRepository = userRepository;
         this.estoqueRepository = estoqueRepository;
     }
 
@@ -34,7 +34,7 @@ public class LoanService {
             return Result.failure("Exemplar não encontrado!");
         }
 
-        final Optional<Usuario> user = usuarioRepository.findByCpf(cpf);
+        final Optional<User> user = userRepository.findByCpf(cpf);
         if (user.isEmpty()) {
             return Result.failure("Usuário não encontrado!");
         }
@@ -57,9 +57,9 @@ public class LoanService {
         return Result.success(loan);
     }
 
-    private boolean validateUser(Usuario usuario) {
-        final boolean userIsActive = usuario.getStatus().equals(StatusUsuario.ATIVO);
-        final boolean copyAvailable = usuario.totalEmprestimosAtivos() < usuario.getCategoria().maximoLivrosEmprestados();
+    private boolean validateUser(User usuario) {
+        final boolean userIsActive = usuario.getStatus().equals(UserStatus.ATIVO);
+        final boolean copyAvailable = usuario.allActiveLoans() < usuario.getCategory().maximoLivrosEmprestados();
         return userIsActive && copyAvailable;
     }
 
@@ -67,10 +67,10 @@ public class LoanService {
         return exemplar.getDisponibilidade();
     }
 
-    private LocalDate calculateDueDate(Usuario user, Livro book) {
-        int days = user.getCategoria().tempoEmprestimo();
+    private LocalDate calculateDueDate(User user, Livro book) {
+        int days = user.getCategory().tempoEmprestimo();
 
-        if(user.getCategoria().equals(CategoriaUsuario.ALUNO) && user.getCurso().livroRelacionado(book.categoria)) {
+        if(user.getCategory().equals(UserCategory.ALUNO) && user.getCourse().livroRelacionado(book.categoria)) {
             days = 30;
         }
 

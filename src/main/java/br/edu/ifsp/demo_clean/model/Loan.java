@@ -14,7 +14,7 @@ public class Loan {
 
     @ManyToOne
     @JsonBackReference
-    public Usuario usuario;
+    public User usuario;
 
     @ManyToOne
     @JsonBackReference
@@ -28,7 +28,7 @@ public class Loan {
 
     public Loan() {}
 
-    public Loan(Usuario usuario, Estoque exemplar, LocalDate dataEmprestimo, LocalDate dataVencimento, LocalDate dataDevolucao) {
+    public Loan(User usuario, Estoque exemplar, LocalDate dataEmprestimo, LocalDate dataVencimento, LocalDate dataDevolucao) {
         this.usuario = usuario;
         this.exemplar = exemplar;
         this.dataEmprestimo = dataEmprestimo;
