@@ -1,6 +1,7 @@
 package br.edu.ifsp.demo_clean.model;
 
 import br.edu.ifsp.demo_clean.model.enums.*;
+import br.edu.ifsp.demo_clean.strategy.LoanStrategy;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -8,7 +9,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
-public class User {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,24 +29,17 @@ public class User {
     @Column(nullable = false)
     private UserCategory category;
 
-    @Enumerated(EnumType.STRING)
-    private Course course;
-
-    @Enumerated(EnumType.STRING)
-    private UserStatus status;
-
     @OneToMany(mappedBy = "usuario")
     public List<Loan> loans = new ArrayList<>();
 
     public User() {}
 
-    public User(String name, String cpf, String email, UserCategory category, Course course, UserStatus status) {
+    // Construtor para atributos comuns a todos os usuários
+    public User(String name, String cpf, String email, UserCategory category) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
         this.category = category;
-        this.course = category == UserCategory.ALUNO ? course : null;
-        this.status = category == UserCategory.ALUNO ? status : null;
     }
 
     public int getId() { return id; }
@@ -60,11 +56,8 @@ public class User {
     public UserCategory getCategory() { return category; }
     public void setCategory(UserCategory category) { this.category = category; }
 
-    public Course getCourse() { return course; }
-    public void setCourse(Course course) { this.course = course; }
-
-    public UserStatus getStatus() { return status; }
-    public void setStatus(UserStatus status) { this.status = status; }
+    @Transient
+    public abstract LoanStrategy<?> getLoanStrategy();
 
     public int allActiveLoans() {
         return this.loans.stream().filter(loan -> !loan.emprestimoFinalizado()).toList().size();
@@ -78,7 +71,6 @@ public class User {
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 ", categoria=" + category +
-                (category == UserCategory.ALUNO ? ", curso=" + course + ", status=" + status : "") +
                 '}';
     }
 }

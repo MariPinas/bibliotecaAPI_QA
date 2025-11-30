@@ -1,7 +1,8 @@
 package br.edu.ifsp.demo_clean.service;
 
 import br.edu.ifsp.demo_clean.dto.UserDTO;
-import br.edu.ifsp.demo_clean.model.User;
+import br.edu.ifsp.demo_clean.model.*;
+import br.edu.ifsp.demo_clean.model.enums.UserCategory;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,14 +61,16 @@ public class UserService {
     public User addUser(UserDTO dto) {
         checkCpf(dto.cpf);
 
-        User user = new User(
-                dto.name,
-                dto.cpf,
-                dto.email,
-                dto.category,
-                dto.course,
-                dto.status
-        );
+        User user;
+        if (dto.category == UserCategory.STUDENT) {
+            user = new Student(dto.name, dto.cpf, dto.email, dto.course, dto.status);
+        } else if (dto.category == UserCategory.PROFESSOR) {
+            user = new Professor(dto.name, dto.cpf, dto.email);
+        } else if (dto.category == UserCategory.LIBRARIAN) {
+            user = new Librarian(dto.name, dto.cpf, dto.email);
+        } else {
+            throw new Error("Categoria de usuário inválida: " + dto.category);
+        }
 
         return userRepository.save(user);
     }
@@ -109,11 +112,15 @@ public class UserService {
         if(dto.category != null){
             user.setCategory(dto.category);
         }
-        if(dto.course != null){
-            user.setCourse(dto.course);
-        }
-        if(dto.status != null){
-            user.setStatus(dto.status);
+
+        if(user instanceof Student){
+            Student s = (Student) user;
+            if(dto.course != null){
+                s.setCourse(dto.course);
+            }
+            if(dto.status != null){
+                s.setStatus(dto.status);
+            }
         }
 
         return userRepository.save(user);
