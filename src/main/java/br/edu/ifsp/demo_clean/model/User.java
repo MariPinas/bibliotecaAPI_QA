@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class User {
@@ -29,7 +29,7 @@ public abstract class User {
     @Column(nullable = false)
     private UserCategory category;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "user")
     public List<Loan> loans = new ArrayList<>();
 
     public User() {}
@@ -60,7 +60,7 @@ public abstract class User {
     public abstract LoanStrategy<?> getLoanStrategy();
 
     public int allActiveLoans() {
-        return this.loans.stream().filter(loan -> !loan.emprestimoFinalizado()).toList().size();
+        return this.loans.stream().filter(loan -> !loan.isCompleted()).toList().size();
     }
 
     @Override

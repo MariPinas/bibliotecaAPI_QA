@@ -2,14 +2,14 @@ package br.edu.ifsp.demo_clean.model.enums;
 
 public enum Course {
     ADS,
-    PEDAGOGIA,
-    ADMINISTRACAO;
+    PEDAGOGY,
+    ADMINISTRATION;
 
-    public boolean livroRelacionado(CategoriaLivro categoriaLivro) {
+    public boolean livroRelacionado(BookCategory bookCategory) {
         return switch (this) {
-            case ADS -> categoriaLivro.equals(CategoriaLivro.COMPUTACAO);
-            case PEDAGOGIA -> categoriaLivro.equals(CategoriaLivro.LETRAS);
-            case ADMINISTRACAO -> categoriaLivro.equals(CategoriaLivro.GESTAO);
+            case ADS -> bookCategory.equals(BookCategory.COMPUTING);
+            case PEDAGOGY -> bookCategory.equals(BookCategory.LETTERS);
+            case ADMINISTRATION -> bookCategory.equals(BookCategory.MANAGEMENT);
         };
     }
 }

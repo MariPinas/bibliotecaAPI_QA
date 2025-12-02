@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface EmprestimoRepository extends JpaRepository<Loan, Integer> {
-    List<Loan> findAllByDataDevolucaoIsNull();
+public interface LoanRepository extends JpaRepository<Loan, Integer> {
+    List<Loan> findAllByDevolutionDateIsNull();
 }

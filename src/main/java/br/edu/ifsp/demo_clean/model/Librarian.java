@@ -16,7 +16,7 @@ public class Librarian extends User {
 
     @Override
     public LoanStrategy<?> getLoanStrategy() {
-        LoanPolicy policy = new LoanPolicy(getCategory().maximoLivrosEmprestados(), getCategory().tempoEmprestimo());
+        LoanPolicy policy = new LoanPolicy(getCategory().getMaximumBooksBorrowed(), getCategory().getLoanTime());
         return new LibrarianLoanStrategy(policy);
     }
 }

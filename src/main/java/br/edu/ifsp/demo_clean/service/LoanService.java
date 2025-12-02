@@ -1,14 +1,11 @@
 package br.edu.ifsp.demo_clean.service;
 
-import br.edu.ifsp.demo_clean.dto.Result;
 import br.edu.ifsp.demo_clean.model.Loan;
-import br.edu.ifsp.demo_clean.model.Estoque;
-import br.edu.ifsp.demo_clean.model.Livro;
+import br.edu.ifsp.demo_clean.model.Stock;
+import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.model.User;
-import br.edu.ifsp.demo_clean.model.enums.UserCategory;
-import br.edu.ifsp.demo_clean.model.enums.UserStatus;
-import br.edu.ifsp.demo_clean.repository.EmprestimoRepository;
-import br.edu.ifsp.demo_clean.repository.EstoqueRepository;
+import br.edu.ifsp.demo_clean.repository.LoanRepository;
+import br.edu.ifsp.demo_clean.repository.StockRepository;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,43 +15,43 @@ import java.util.Optional;
 
 @Service
 public class LoanService {
-    private final EmprestimoRepository emprestimoRepository;
+    private final LoanRepository loanRepository;
     private final UserRepository userRepository;
-    private final EstoqueRepository estoqueRepository;
+    private final StockRepository stockRepository;
 
-    public LoanService(EmprestimoRepository emprestimoRepository, UserRepository userRepository, EstoqueRepository estoqueRepository) {
-        this.emprestimoRepository = emprestimoRepository;
+    public LoanService(LoanRepository loanRepository, UserRepository userRepository, StockRepository stockRepository) {
+        this.loanRepository = loanRepository;
         this.userRepository = userRepository;
-        this.estoqueRepository = estoqueRepository;
+        this.stockRepository = stockRepository;
     }
 
-    public Result<Loan> register(int exemplaryCode, String cpf) {
-        final Optional<Estoque> exemplary = estoqueRepository.findById(exemplaryCode);
+    public Loan register(int stockCode, String cpf) {
+        final Optional<Stock> exemplary = stockRepository.findById(stockCode);
         if (exemplary.isEmpty()) {
-            return Result.failure("Exemplar não encontrado!");
+            throw new Error("Exemplar não encontrado!");
         }
 
         final Optional<User> user = userRepository.findByCpf(cpf);
         if (user.isEmpty()) {
-            return Result.failure("Usuário não encontrado!");
+            throw new Error("Usuário não encontrado!");
         }
 
         if (!validateUser(user.get())) {
-            return Result.failure("Usuário inválido");
+            throw new Error("Usuário inválido");
         }
 
         if (!validaExemplar(exemplary.get())) {
-            return Result.failure("Exemplar não disponível");
+            throw new Error("Exemplar não disponível");
         }
 
-        final LocalDate dueDate = calculateDueDate(user.get(), exemplary.get().livro);
-        exemplary.get().setDisponibilidade(false);
+        final LocalDate dueDate = calculateDueDate(user.get(), exemplary.get().book);
+        exemplary.get().setAvailability(false);
         final Loan loan = new Loan(user.get(), exemplary.get(), LocalDate.now(), dueDate, null);
 
-        emprestimoRepository.save(loan);
-        estoqueRepository.save(exemplary.get());
+        loanRepository.save(loan);
+        stockRepository.save(exemplary.get());
 
-        return Result.success(loan);
+        return loan;
     }
 
     private boolean validateUser(User usuario) {
@@ -62,17 +59,17 @@ public class LoanService {
         // porque como eu mudei a classe user, nao tava conseguindo rodar pra testar oq eu fiz
         // final boolean userIsActive = usuario.getStatus().equals(UserStatus.ATIVO);
 
-        final boolean copyAvailable = usuario.allActiveLoans() < usuario.getCategory().maximoLivrosEmprestados();
+        final boolean copyAvailable = usuario.allActiveLoans() < usuario.getCategory().getMaximumBooksBorrowed();
         // retornando apenas a verificacao de limite
         return copyAvailable;
     }
 
-    private boolean validaExemplar(Estoque exemplar) {
-        return exemplar.getDisponibilidade();
+    private boolean validaExemplar(Stock exemplar) {
+        return exemplar.isAvailability();
     }
 
-    private LocalDate calculateDueDate(User user, Livro book) {
-        int days = user.getCategory().tempoEmprestimo();
+    private LocalDate calculateDueDate(User user, Book book) {
+        int days = user.getCategory().getLoanTime();
 
         // comentado temporariamente
         // if(user.getCategory().equals(UserCategory.ALUNO) && user.getCourse().livroRelacionado(book.categoria)) {
@@ -82,30 +79,30 @@ public class LoanService {
         return LocalDate.now().plusDays(days);
     }
 
-    public Result<Loan> devolution(int loanId) {
-        final Optional<Loan> loan = emprestimoRepository.findById(loanId);
+    public Loan devolution(int loanId) {
+        final Optional<Loan> loan = loanRepository.findById(loanId);
 
         if(loan.isEmpty()) {
-            return Result.failure("Empréstimo não encontrado!");
+            throw new Error("Empréstimo não encontrado!");
         }
 
-        if(loan.get().emprestimoFinalizado()) {
-            return Result.failure("Devolução já realizada!");
+        if(loan.get().isCompleted()) {
+            throw new Error("Devolução já realizada!");
         }
 
-        loan.get().dataDevolucao = LocalDate.now();
-        loan.get().exemplar.setDisponibilidade(true);
-        emprestimoRepository.save(loan.get());
-        estoqueRepository.save(loan.get().exemplar);
+        loan.get().setDevolutionDate(LocalDate.now());
+        loan.get().getStock().setAvailability(true);
+        loanRepository.save(loan.get());
+        stockRepository.save(loan.get().getStock());
 
-        return Result.success(loan.get());
+        return loan.get();
     }
 
     public List<Loan> listAssets() {
-        return emprestimoRepository.findAllByDataDevolucaoIsNull();
+        return loanRepository.findAllByDevolutionDateIsNull();
     }
 
     public List<Loan> listHistory() {
-        return emprestimoRepository.findAll();
+        return loanRepository.findAll();
     }
 }

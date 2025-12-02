@@ -5,7 +5,7 @@ public enum UserCategory {
     PROFESSOR,
     LIBRARIAN;
 
-    public int tempoEmprestimo() {
+    public int getLoanTime() {
         return switch (this) {
             case STUDENT -> 15;
             case PROFESSOR -> 40;
@@ -13,7 +13,7 @@ public enum UserCategory {
         };
     }
     
-    public int maximoLivrosEmprestados() {
+    public int getMaximumBooksBorrowed() {
         return switch (this) {
             case STUDENT -> 3;
             case PROFESSOR -> 5;

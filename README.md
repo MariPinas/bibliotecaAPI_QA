@@ -40,12 +40,12 @@ O código foi propositalmente escrito de forma confusa para prática de **refato
 ## 4. Endpoints
 
 * **Swagger UI:**  
-  [http://localhost:8080/demo/v1/swagger-ui/index.html#/](http://localhost:8080/demo/v1/swagger-ui/index.html#/)
+  [http://localhost:8090/library/swagger-ui/index.html#/](http://localhost:8080/demo/v1/swagger-ui/index.html#/)
 
 * **H2 Console:**  
-  [http://localhost:8080/demo/v1/h2-console/login.do](http://localhost:8080/demo/v1/h2-console/login.do)  
+  [http://localhost:8090/library/h2-console/login.do](http://localhost:8080/demo/v1/h2-console/login.do)  
 
-  * **JDBC URL:** `jdbc:h2:mem:carrosDB`  
+  * **JDBC URL:** `jdbc:h2:mem:bibliotecaDB`  
   * **Usuário:** `sa`  
   * **Senha:** (deixe em branco)
 
@@ -62,7 +62,7 @@ O código foi propositalmente escrito de forma confusa para prática de **refato
 
 3.  Teste os endpoints via **Swagger UI** ou usando ferramentas como **Postman** ou **curl**.
 4.  Para acessar o **H2 Console** (banco de dados em memória):
-    *   **URL:** [http://localhost:8080/demo/v1/h2-console](http://localhost:8080/demo/v1/h2-console)
+    *   **URL:** [http://localhost:8090/library/h2-console](http://localhost:8080/demo/v1/h2-console)
     *   **JDBC URL:** `jdbc:h2:mem:carrosDB`
     *   **Usuário:** `sa`
     *   **Senha:** *(deixe em branco)*

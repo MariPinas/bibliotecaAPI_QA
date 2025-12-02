@@ -75,17 +75,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public String getUsers() {
-        List<User> list = userRepository.findAll();
-        if(list.isEmpty()){
-            return "Nenhum usuário encontrado!";
-        }
-
-        String result = "Usuários cadastrados:\n";
-        for(User u : list){
-            result += "\n" + u.toString() + "\n";
-        }
-        return result;
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 
     public User getUser(String cpf){
@@ -127,8 +118,8 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUser(String cpf){
-        User user = userRepository.findByCpf(cpf).orElse(null);
+    public User deleteUser(String cpf){
+        final User user = userRepository.findByCpf(cpf).orElse(null);
         if(user == null){
             throw new Error("Usuário não encontrado com CPF: " + cpf);
         }
@@ -136,5 +127,6 @@ public class UserService {
             throw new Error("Usuário não pode ser deletado pois possui empréstimos ativos.");
         }
         userRepository.delete(user);
+        return user;
     }
 }
