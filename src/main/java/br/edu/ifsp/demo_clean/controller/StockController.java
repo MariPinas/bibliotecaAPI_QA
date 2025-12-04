@@ -19,7 +19,7 @@ public class StockController {
         this.stockService = stockService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Stock>> getAllAvailable() {
         try {
             return ResponseEntity.ok(stockService.getAllAvailable());
@@ -37,7 +37,7 @@ public class StockController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Stock> addStock(@RequestBody StockDTO stock) {
         try {
             return ResponseEntity.ok(stockService.addStock(stock));
@@ -46,7 +46,7 @@ public class StockController {
         }
     }
 
-    @PutMapping("/")
+    @PutMapping
     public ResponseEntity<Stock> updateStock(@RequestBody Stock stock) {
         try {
             return ResponseEntity.ok(stockService.updateStock(stock));
@@ -56,7 +56,7 @@ public class StockController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Stock> deleteStock(@PathVariable int id) throws Exception {
+    public ResponseEntity<Stock> deleteStock(@PathVariable int id) {
         try {
             return ResponseEntity.ok(stockService.deleteStock(id));
         } catch (Exception e) {
