@@ -8,12 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/library/users")
-@Tag(name = "Usuários", description = "Responsável por controlar os usuários da biblioteca")
-public class UserController {
+@RequestMapping("/library/professor")
+@Tag(name = "Professores", description = "Responsável por controlar os usuários do tipo professor")
+public class ProfessorController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public ProfessorController(UserService userService) {
         this.userService = userService;
     }
 

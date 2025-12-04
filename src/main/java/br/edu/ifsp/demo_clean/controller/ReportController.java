@@ -54,12 +54,12 @@ public class ReportController {
     }
 
     @GetMapping("/loan/assets")
-    public ResponseEntity<List<Loan>> listAssets() {
+    public ResponseEntity<List<Loan>> getAssets() {
         return handleReport(loanService.listAssets());
     }
 
     @GetMapping("/loan/history")
-    public ResponseEntity<List<Loan>> history() {
+    public ResponseEntity<List<Loan>> getHistory() {
         return handleReport(loanService.listHistory());
     }
 }

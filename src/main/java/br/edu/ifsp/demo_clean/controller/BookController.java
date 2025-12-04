@@ -8,8 +8,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping({"/library"})
 @Tag(name = "Livros", description = "Responsável por controlar os livros")
@@ -25,15 +23,6 @@ public class BookController {
         try{
             return ResponseEntity.ok(this.bookService.addBook(bookDTO));
         } catch (Error ex){
-            return ResponseEntity.internalServerError().body(null);
-        }
-    }
-
-    @GetMapping({"/book"})
-    public ResponseEntity<List<Book>> listBooks() {
-        try {
-            return ResponseEntity.ok(bookService.listBooks());
-        } catch (Exception e) {
             return ResponseEntity.internalServerError().body(null);
         }
     }

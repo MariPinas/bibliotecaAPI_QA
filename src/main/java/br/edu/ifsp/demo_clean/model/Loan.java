@@ -1,7 +1,5 @@
 package br.edu.ifsp.demo_clean.model;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

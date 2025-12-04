@@ -7,8 +7,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/library/stock")
 @Tag(name = "Estoques", description = "Responsável por controlar o estoque")
@@ -17,15 +15,6 @@ public class StockController {
 
     public StockController(StockService stockService) {
         this.stockService = stockService;
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Stock>> getAllAvailable() {
-        try {
-            return ResponseEntity.ok(stockService.getAllAvailable());
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(null);
-        }
     }
 
     @GetMapping("/{id}")
