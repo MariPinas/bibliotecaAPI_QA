@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="">
+    <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/factory/UserFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/factory/UserRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/BaseUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" afterDir="false" />
@@ -59,40 +61,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DemoCleanApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.demo_clean [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.demo_clean [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-clean-plugin:3.4.1:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install-file].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.demo_clean [package].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.DemoCleanApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Unnamed.executor&quot;: &quot;Debug&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aluno/Desktop/bibliotecaAPI_QA&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DemoCleanApplication.executor": "Run",
+    "Maven.demo_clean [clean].executor": "Run",
+    "Maven.demo_clean [install].executor": "Run",
+    "Maven.demo_clean [org.apache.maven.plugins:maven-clean-plugin:3.4.1:clean].executor": "Run",
+    "Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install-file].executor": "Run",
+    "Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install].executor": "Run",
+    "Maven.demo_clean [package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.DemoCleanApplication.executor": "Run",
+    "Spring Boot.Unnamed.executor": "Debug",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/aluno/Desktop/bibliotecaAPI_QA",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\maria\Desktop\all\programacao\bibliotecaAPI_QA" />
@@ -127,8 +129,17 @@
       <option name="presentableId" value="Default" />
       <updated>1758671400670</updated>
       <workItem from="1764898649687" duration="307000" />
-      <workItem from="1764899366534" duration="12452000" />
+      <workItem from="1764899366534" duration="12907000" />
     </task>
+    <task id="LOCAL-00001" summary="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README">
+      <option name="closed" value="true" />
+      <created>1764949348615</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764949348615</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +160,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+    <MESSAGE value="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
