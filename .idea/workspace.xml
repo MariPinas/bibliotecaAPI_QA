@@ -5,49 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/StockDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/BookRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/StockRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/adapter/BookAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/adapter/LoanAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/adapter/StockAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/adapter/UserAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/EstoqueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LivroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/EstoqueDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/LivroDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/BookDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/RegisterLoanDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/LoanDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/Result.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/BookDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/LoanDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/StockDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/UserDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/interfaces/DTOAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Livro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Loan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/CategoriaLivro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/BookCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/UserCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/UserCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/UserStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/UserStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/EmprestimoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/LoanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/EstoqueRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/LivroRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/EstoqueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LivroService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/LoanStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/LoanStrategy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,12 +41,12 @@
     &quot;assignee&quot;: &quot;MariPinas&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MariPinas/bibliotecaAPI_QA.git",
-    "accountId": "2945e9e2-a70d-4356-9939-c4ea1cf7fb13"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MariPinas/bibliotecaAPI_QA.git&quot;,
+    &quot;accountId&quot;: &quot;2945e9e2-a70d-4356-9939-c4ea1cf7fb13&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -88,24 +59,64 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DemoCleanApplication.executor": "Run",
-    "Maven.demo_clean [install].executor": "Run",
-    "Maven.demo_clean [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/aluno/Desktop/bibliotecaAPI_QA",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DemoCleanApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-clean-plugin:3.4.1:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install-file].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DemoCleanApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.Unnamed.executor&quot;: &quot;Debug&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aluno/Desktop/bibliotecaAPI_QA&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\maria\Desktop\all\programacao\bibliotecaAPI_QA" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.edu.ifsp.demo_clean.controller" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="bibliotecaAPI_QA" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.edu.ifsp.demo_clean.DemoCleanApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -115,8 +126,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1758671400670</updated>
+      <workItem from="1764898649687" duration="307000" />
+      <workItem from="1764899366534" duration="12452000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

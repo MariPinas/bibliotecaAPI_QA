@@ -3,26 +3,24 @@ package br.edu.ifsp.demo_clean.controller;
 import br.edu.ifsp.demo_clean.dto.UserDTO;
 import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.service.UserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/library/users")
-@Tag(name = "Usuários", description = "Responsável por controlar os usuários da biblioteca")
-public class UserController {
+public abstract class BaseUserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public BaseUserController(UserService userService) {
         this.userService = userService;
     }
 
+    protected abstract Class<? extends User> getUserClass();
+
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody UserDTO dto) {
+    public ResponseEntity<?> addUser(@RequestBody UserDTO dto) {
         try {
-            return ResponseEntity.ok(userService.addUser(dto));
+            return ResponseEntity.ok(userService.addUser(dto, this.getUserClass()));
         } catch (Error ex) {
-            return ResponseEntity.internalServerError().body(null);
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 

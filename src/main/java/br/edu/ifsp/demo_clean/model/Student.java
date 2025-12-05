@@ -1,5 +1,6 @@
 package br.edu.ifsp.demo_clean.model;
 
+import br.edu.ifsp.demo_clean.factory.UserRegistry;
 import br.edu.ifsp.demo_clean.model.enums.*;
 import br.edu.ifsp.demo_clean.strategy.*;
 import jakarta.persistence.*;
@@ -7,6 +8,12 @@ import jakarta.persistence.*;
 @Entity
 @DiscriminatorValue("STUDENT")
 public class Student extends User {
+
+    static {
+        UserRegistry.register(Student.class, dto ->
+                new Student(dto.name, dto.cpf, dto.email, dto.course, dto.status)
+        );
+    }
 
     @Enumerated(EnumType.STRING)
     private Course course;
@@ -17,7 +24,7 @@ public class Student extends User {
     public Student() { super(); }
 
     public Student(String name, String cpf, String email, Course course, UserStatus status) {
-        super(name, cpf, email, UserCategory.STUDENT);
+        super(name, cpf, email);
         this.course = course;
         this.status = status;
     }
@@ -30,7 +37,9 @@ public class Student extends User {
 
     @Override
     public LoanStrategy<?> getLoanStrategy() {
-        LoanPolicy policy = new LoanPolicy(getCategory().getMaximumBooksBorrowed(), getCategory().getLoanTime());
+        var maxBooks = 3;
+        var loanDays = 15;
+        LoanPolicy policy = new LoanPolicy(maxBooks, loanDays);
         return new StudentLoanStrategy(policy);
     }
 
@@ -41,7 +50,6 @@ public class Student extends User {
                 ", nome='" + getName() + '\'' +
                 ", cpf='" + getCpf() + '\'' +
                 ", email='" + getEmail() + '\'' +
-                ", categoria=" + getCategory() +
                 ", curso=" + course +
                 ", status=" + status +
                 '}';

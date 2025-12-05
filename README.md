@@ -40,12 +40,12 @@ O código foi propositalmente escrito de forma confusa para prática de **refato
 ## 4. Endpoints
 
 * **Swagger UI:**  
-  [http://localhost:8090/library/swagger-ui/index.html#/](http://localhost:8080/demo/v1/swagger-ui/index.html#/)
+  [http://localhost:8090/library/swagger-ui/index.html#/](http://localhost:8090/library/swagger-ui/index.html#/)
 
 * **H2 Console:**  
-  [http://localhost:8090/library/h2-console/login.do](http://localhost:8080/demo/v1/h2-console/login.do)  
+  [http://localhost:8090/library/h2-console/login.do](http://localhost:8090/library/h2-console/login.do)  
 
-  * **JDBC URL:** `jdbc:h2:mem:bibliotecaDB`  
+  * **JDBC URL:** `jdbc:h2:mem:bibliotecaDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`  
   * **Usuário:** `sa`  
   * **Senha:** (deixe em branco)
 

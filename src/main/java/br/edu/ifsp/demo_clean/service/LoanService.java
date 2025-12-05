@@ -7,6 +7,7 @@ import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.repository.LoanRepository;
 import br.edu.ifsp.demo_clean.repository.StockRepository;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
+import br.edu.ifsp.demo_clean.strategy.LoanPolicy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -58,8 +59,9 @@ public class LoanService {
         // temporariamente comentei a verificacao de status que chamava usuario.getStatus(),
         // porque como eu mudei a classe user, nao tava conseguindo rodar pra testar oq eu fiz
         // final boolean userIsActive = usuario.getStatus().equals(UserStatus.ATIVO);
+        LoanPolicy policy = usuario.getLoanStrategy().getPolicy();
 
-        final boolean copyAvailable = usuario.allActiveLoans() < usuario.getCategory().getMaximumBooksBorrowed();
+        final boolean copyAvailable = usuario.allActiveLoans() < policy.getMaxBooks();
         // retornando apenas a verificacao de limite
         return copyAvailable;
     }
@@ -69,7 +71,9 @@ public class LoanService {
     }
 
     private LocalDate calculateDueDate(User user, Book book) {
-        int days = user.getCategory().getLoanTime();
+        LoanPolicy policy = user.getLoanStrategy().getPolicy();
+
+        int days = policy.getLoanDays();
 
         // comentado temporariamente
         // if(user.getCategory().equals(UserCategory.ALUNO) && user.getCourse().livroRelacionado(book.categoria)) {

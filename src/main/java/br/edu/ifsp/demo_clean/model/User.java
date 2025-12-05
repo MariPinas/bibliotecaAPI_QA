@@ -25,21 +25,16 @@ public abstract class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private UserCategory category;
-
     @OneToMany(mappedBy = "user")
     public List<Loan> loans = new ArrayList<>();
 
     public User() {}
 
     // Construtor para atributos comuns a todos os usuários
-    public User(String name, String cpf, String email, UserCategory category) {
+    public User(String name, String cpf, String email) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
-        this.category = category;
     }
 
     public int getId() { return id; }
@@ -52,9 +47,6 @@ public abstract class User {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-
-    public UserCategory getCategory() { return category; }
-    public void setCategory(UserCategory category) { this.category = category; }
 
     @Transient
     public abstract LoanStrategy<?> getLoanStrategy();
@@ -70,7 +62,6 @@ public abstract class User {
                 ", nome='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
-                ", categoria=" + category +
                 '}';
     }
 }

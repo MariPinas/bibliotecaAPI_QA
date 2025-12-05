@@ -1,8 +1,8 @@
 package br.edu.ifsp.demo_clean.service;
 
 import br.edu.ifsp.demo_clean.dto.UserDTO;
+import br.edu.ifsp.demo_clean.factory.UserRegistry;
 import br.edu.ifsp.demo_clean.model.*;
-import br.edu.ifsp.demo_clean.model.enums.UserCategory;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,21 +58,15 @@ public class UserService {
     }
 
     @Transactional
-    public User addUser(UserDTO dto) {
-        checkCpf(dto.cpf);
-
-        User user;
-        if (dto.category == UserCategory.STUDENT) {
-            user = new Student(dto.name, dto.cpf, dto.email, dto.course, dto.status);
-        } else if (dto.category == UserCategory.PROFESSOR) {
-            user = new Professor(dto.name, dto.cpf, dto.email);
-        } else if (dto.category == UserCategory.LIBRARIAN) {
-            user = new Librarian(dto.name, dto.cpf, dto.email);
-        } else {
-            throw new Error("Categoria de usuário inválida: " + dto.category);
+    public User addUser(UserDTO dto, Class<? extends User> userClass) {
+        try{
+            checkCpf(dto.cpf);
+            User user = UserRegistry.create(dto, userClass);
+            return userRepository.save(user);
         }
-
-        return userRepository.save(user);
+        catch (Exception e) {
+            throw new RuntimeException("Erro ao criar usuário", e);
+        }
     }
 
     public List<User> getUsers() {
@@ -99,9 +93,6 @@ public class UserService {
         }
         if(dto.email != null && !dto.email.isBlank()){
             user.setEmail(dto.email);
-        }
-        if(dto.category != null){
-            user.setCategory(dto.category);
         }
 
         if(user instanceof Student){
