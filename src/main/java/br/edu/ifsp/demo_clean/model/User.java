@@ -30,7 +30,6 @@ public abstract class User {
 
     public User() {}
 
-    // Construtor para atributos comuns a todos os usuários
     public User(String name, String cpf, String email) {
         this.name = name;
         this.cpf = cpf;
