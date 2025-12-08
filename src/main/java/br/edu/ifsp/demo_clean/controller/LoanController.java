@@ -1,7 +1,7 @@
 package br.edu.ifsp.demo_clean.controller;
 
 import br.edu.ifsp.demo_clean.dto.LoanDTO;
-import br.edu.ifsp.demo_clean.model.Loan;
+import br.edu.ifsp.demo_clean.dto.response.LoanResponseDTO;
 import br.edu.ifsp.demo_clean.service.LoanService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class LoanController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Loan> save(@RequestBody LoanDTO loanDTO) {
+    public ResponseEntity<LoanResponseDTO> save(@RequestBody LoanDTO loanDTO) {
         try {
             return ResponseEntity.ok(loanService.register(loanDTO.stockCode, loanDTO.cpf));
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class LoanController {
     }
 
     @PutMapping("/{id}/devolution")
-    public ResponseEntity<Loan> devolution(@PathVariable int id) {
+    public ResponseEntity<LoanResponseDTO> devolution(@PathVariable int id) {
         try {
             return ResponseEntity.ok(loanService.devolution(id));
         } catch (Exception e) {

@@ -2,12 +2,15 @@ package br.edu.ifsp.demo_clean.service;
 
 import br.edu.ifsp.demo_clean.model.Loan;
 import br.edu.ifsp.demo_clean.model.Stock;
+import br.edu.ifsp.demo_clean.dto.response.LoanResponseDTO;
 import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.repository.LoanRepository;
 import br.edu.ifsp.demo_clean.repository.StockRepository;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
 import br.edu.ifsp.demo_clean.strategy.LoanPolicy;
+import br.mapper.LoanMapper;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,7 +29,7 @@ public class LoanService {
         this.stockRepository = stockRepository;
     }
 
-    public Loan register(int stockCode, String cpf) {
+    public LoanResponseDTO register(int stockCode, String cpf) {
         final Optional<Stock> exemplary = stockRepository.findById(stockCode);
         if (exemplary.isEmpty()) {
             throw new Error("Exemplar não encontrado!");
@@ -52,12 +55,14 @@ public class LoanService {
         loanRepository.save(loan);
         stockRepository.save(exemplary.get());
 
-        return loan;
+        return LoanMapper.toDTO(loan);
     }
 
     private boolean validateUser(User usuario) {
-        // temporariamente comentei a verificacao de status que chamava usuario.getStatus(),
-        // porque como eu mudei a classe user, nao tava conseguindo rodar pra testar oq eu fiz
+        // temporariamente comentei a verificacao de status que chamava
+        // usuario.getStatus(),
+        // porque como eu mudei a classe user, nao tava conseguindo rodar pra testar oq
+        // eu fiz
         // final boolean userIsActive = usuario.getStatus().equals(UserStatus.ATIVO);
         LoanPolicy policy = usuario.getLoanStrategy().getPolicy();
 
@@ -76,21 +81,22 @@ public class LoanService {
         int days = policy.getLoanDays();
 
         // comentado temporariamente
-        // if(user.getCategory().equals(UserCategory.ALUNO) && user.getCourse().livroRelacionado(book.categoria)) {
-        //     days = 30;
+        // if(user.getCategory().equals(UserCategory.ALUNO) &&
+        // user.getCourse().livroRelacionado(book.categoria)) {
+        // days = 30;
         // }
 
         return LocalDate.now().plusDays(days);
     }
 
-    public Loan devolution(int loanId) {
+    public LoanResponseDTO devolution(int loanId) {
         final Optional<Loan> loan = loanRepository.findById(loanId);
 
-        if(loan.isEmpty()) {
+        if (loan.isEmpty()) {
             throw new Error("Empréstimo não encontrado!");
         }
 
-        if(loan.get().isCompleted()) {
+        if (loan.get().isCompleted()) {
             throw new Error("Devolução já realizada!");
         }
 
@@ -99,14 +105,19 @@ public class LoanService {
         loanRepository.save(loan.get());
         stockRepository.save(loan.get().getStock());
 
-        return loan.get();
+        return LoanMapper.toDTO(loan.get());
     }
 
-    public List<Loan> listAssets() {
-        return loanRepository.findAllByDevolutionDateIsNull();
+    public List<LoanResponseDTO> listAssets() {
+        return loanRepository.findAllByDevolutionDateIsNull()
+                .stream()
+                .map(LoanMapper::toDTO)
+                .toList();
     }
 
-    public List<Loan> listHistory() {
-        return loanRepository.findAll();
+    public List<LoanResponseDTO> listHistory() {
+        return loanRepository.findAll().stream()
+                .map(LoanMapper::toDTO)
+                .toList();
     }
 }

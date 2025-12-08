@@ -1,6 +1,7 @@
 package br.edu.ifsp.demo_clean.model;
 
-import br.edu.ifsp.demo_clean.model.enums.*;
+import br.edu.ifsp.demo_clean.model.enums.Course;
+import br.edu.ifsp.demo_clean.model.enums.UserStatus;
 import br.edu.ifsp.demo_clean.strategy.LoanStrategy;
 import jakarta.persistence.*;
 
@@ -25,28 +26,72 @@ public abstract class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Course course;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
     @OneToMany(mappedBy = "user")
     public List<Loan> loans = new ArrayList<>();
 
-    public User() {}
+    public User() {
+    }
 
     // Construtor para atributos comuns a todos os usuários
-    public User(String name, String cpf, String email) {
+    public User(String name, String cpf, String email, Course course, UserStatus status) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
+        this.course = course;
+        this.status = status;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
 
     @Transient
     public abstract LoanStrategy<?> getLoanStrategy();

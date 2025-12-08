@@ -1,6 +1,7 @@
 package br.edu.ifsp.demo_clean.controller;
 
 import br.edu.ifsp.demo_clean.dto.UserDTO;
+import br.edu.ifsp.demo_clean.dto.response.UserResponseDTO;
 import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public abstract class BaseUserController {
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<User> getUser(@PathVariable String cpf) {
+    public ResponseEntity<UserResponseDTO> getUser(@PathVariable String cpf) {
         try {
             return ResponseEntity.ok(userService.getUser(cpf));
         } catch (Error ex) {
@@ -34,7 +35,7 @@ public abstract class BaseUserController {
     }
 
     @PutMapping("/{cpf}")
-    public ResponseEntity<User> updateUser(@RequestBody UserDTO dto, @PathVariable String cpf) {
+    public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserDTO dto, @PathVariable String cpf) {
         try {
             return ResponseEntity.ok(userService.updateUser(dto, cpf));
         } catch (Error ex) {
@@ -43,7 +44,7 @@ public abstract class BaseUserController {
     }
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<User> deleteUser(@PathVariable String cpf) {
+    public ResponseEntity<UserResponseDTO> deleteUser(@PathVariable String cpf) {
         try {
             return ResponseEntity.ok(userService.deleteUser(cpf));
         } catch (Error ex) {

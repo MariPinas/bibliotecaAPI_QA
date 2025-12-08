@@ -24,9 +24,7 @@ public class Student extends User {
     public Student() { super(); }
 
     public Student(String name, String cpf, String email, Course course, UserStatus status) {
-        super(name, cpf, email);
-        this.course = course;
-        this.status = status;
+        super(name, cpf, email, course, status);
     }
 
     public Course getCourse() { return course; }

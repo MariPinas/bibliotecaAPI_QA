@@ -1,9 +1,12 @@
 package br.edu.ifsp.demo_clean.service;
 
 import br.edu.ifsp.demo_clean.dto.UserDTO;
+import br.edu.ifsp.demo_clean.dto.response.UserResponseDTO;
 import br.edu.ifsp.demo_clean.factory.UserRegistry;
 import br.edu.ifsp.demo_clean.model.*;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
+import br.mapper.UserMapper;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,20 +72,24 @@ public class UserService {
         }
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
-    }
+    public List<UserResponseDTO> getUsers() {
+    return userRepository.findAll()
+            .stream()
+            .map(UserMapper::toDTO)
+            .toList();
+}
 
-    public User getUser(String cpf){
+
+    public UserResponseDTO getUser(String cpf){
         User user = userRepository.findByCpf(cpf).orElse(null);
         if(user == null){
             throw new Error("Usuário não encontrado com CPF: " + cpf);
         }
-        return user;
+        return UserMapper.toDTO(user);
     }
 
     @Transactional
-    public User updateUser(UserDTO dto, String cpf){
+    public UserResponseDTO updateUser(UserDTO dto, String cpf){
         User user = userRepository.findByCpf(cpf).orElse(null);
         if(user == null){
             throw new Error("Usuário não encontrado com CPF: " + cpf);
@@ -105,11 +112,11 @@ public class UserService {
             }
         }
 
-        return userRepository.save(user);
+        return UserMapper.toDTO(userRepository.save(user));
     }
 
     @Transactional
-    public User deleteUser(String cpf){
+    public UserResponseDTO deleteUser(String cpf){
         final User user = userRepository.findByCpf(cpf).orElse(null);
         if(user == null){
             throw new Error("Usuário não encontrado com CPF: " + cpf);
@@ -118,6 +125,6 @@ public class UserService {
             throw new Error("Usuário não pode ser deletado pois possui empréstimos ativos.");
         }
         userRepository.delete(user);
-        return user;
+        return UserMapper.toDTO(user);
     }
 }

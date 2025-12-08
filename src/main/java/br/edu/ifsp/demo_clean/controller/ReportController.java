@@ -1,9 +1,9 @@
 package br.edu.ifsp.demo_clean.controller;
 
+import br.edu.ifsp.demo_clean.dto.response.LoanResponseDTO;
+import br.edu.ifsp.demo_clean.dto.response.UserResponseDTO;
 import br.edu.ifsp.demo_clean.model.Book;
-import br.edu.ifsp.demo_clean.model.Loan;
 import br.edu.ifsp.demo_clean.model.Stock;
-import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.service.BookService;
 import br.edu.ifsp.demo_clean.service.LoanService;
 import br.edu.ifsp.demo_clean.service.StockService;
@@ -39,7 +39,7 @@ public class ReportController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<UserResponseDTO>> getUsers() {
         return handleReport(userService.getUsers());
     }
 
@@ -54,12 +54,12 @@ public class ReportController {
     }
 
     @GetMapping("/loan/assets")
-    public ResponseEntity<List<Loan>> getAssets() {
+    public ResponseEntity<List<LoanResponseDTO>> getAssets() {
         return handleReport(loanService.listAssets());
     }
 
     @GetMapping("/loan/history")
-    public ResponseEntity<List<Loan>> getHistory() {
+    public ResponseEntity<List<LoanResponseDTO>> getHistory() {
         return handleReport(loanService.listHistory());
     }
 }
