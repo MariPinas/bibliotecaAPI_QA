@@ -4,6 +4,7 @@ import br.edu.ifsp.demo_clean.dto.StockDTO;
 import br.edu.ifsp.demo_clean.model.Stock;
 import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.repository.StockRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,7 +57,7 @@ public class StockService {
 
         if (!estoqueUpdate.isEmpty()) {
             Stock stockLocalizado = estoqueUpdate.get();
-            stockLocalizado.setAvailability(stock.isAvailability());
+            stockLocalizado.setAvailability(stock.getAvailability());
 
             return stockRepository.save(stockLocalizado);
         } else {
@@ -67,7 +68,7 @@ public class StockService {
     public Stock deleteStock(int id) {
         final Stock stock = getById(id);
 
-        if (stock.isAvailability()) {
+        if (stock.getAvailability()) {
             stockRepository.delete(stock);
             return stock;
         } else {

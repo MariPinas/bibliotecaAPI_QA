@@ -1,8 +1,9 @@
 package br.edu.ifsp.demo_clean.controller;
 
 import br.edu.ifsp.demo_clean.dto.BookDTO;
-import br.edu.ifsp.demo_clean.model.Book;
+import br.edu.ifsp.demo_clean.dto.response.BookResponseDTO;
 import br.edu.ifsp.demo_clean.service.BookService;
+import br.mapper.BookMapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.http.ResponseEntity;
@@ -19,36 +20,36 @@ public class BookController {
     }
 
     @PostMapping({"/book"})
-    public ResponseEntity<Book> addBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookResponseDTO> addBook(@RequestBody BookDTO bookDTO) {
         try{
-            return ResponseEntity.ok(this.bookService.addBook(bookDTO));
+            return ResponseEntity.ok(BookMapper.toDTO(this.bookService.addBook(bookDTO)));
         } catch (Error ex){
             return ResponseEntity.internalServerError().body(null);
         }
     }
 
     @GetMapping({"/book/{isbn}"})
-    public ResponseEntity<Book> getByISBN(@PathVariable int isbn) {
+    public ResponseEntity<BookResponseDTO> getByISBN(@PathVariable int isbn) {
         try {
-            return ResponseEntity.ok(bookService.getBookByISBN(isbn));
+            return ResponseEntity.ok(BookMapper.toDTO(bookService.getBookByISBN(isbn)));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(null);
         }
     }
 
     @PutMapping({"/book/{isbn}"})
-    public ResponseEntity<Book> updateBook(@RequestBody BookDTO bookDTO, int isbn) {
+    public ResponseEntity<BookResponseDTO> updateBook(@RequestBody BookDTO bookDTO, int isbn) {
         try {
-            return ResponseEntity.ok(bookService.updateBook(bookDTO, isbn));
+            return ResponseEntity.ok(BookMapper.toDTO(bookService.updateBook(bookDTO, isbn)));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(null);
         }
     }
 
     @DeleteMapping({"/book/{isbn}"})
-    public ResponseEntity<Book> deleteBook(@PathVariable int isbn) {
+    public ResponseEntity<BookResponseDTO> deleteBook(@PathVariable int isbn) {
         try {
-            return ResponseEntity.ok(bookService.deleteBookByISBN(isbn));
+            return ResponseEntity.ok(BookMapper.toDTO(bookService.deleteBookByISBN(isbn)));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(null);
         }

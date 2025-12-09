@@ -4,12 +4,12 @@ import br.edu.ifsp.demo_clean.model.enums.Course;
 import br.edu.ifsp.demo_clean.model.enums.UserStatus;
 
 public class UserResponseDTO {
-    private int id;
-    private String name;
-    private String cpf;
-    private String email;
-    private Course course;
-    private UserStatus status;
+    public int id;
+    public String name;
+    public String cpf;
+    public String email;
+    public Course course;
+    public UserStatus status;
 
     public UserResponseDTO() {}
 
@@ -20,29 +20,5 @@ public class UserResponseDTO {
         this.email = email;
         this.course = course;
         this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public UserStatus getStatus() {
-        return status;
     }
 }

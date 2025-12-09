@@ -2,14 +2,12 @@ package br.edu.ifsp.demo_clean.service;
 
 import br.edu.ifsp.demo_clean.model.Loan;
 import br.edu.ifsp.demo_clean.model.Stock;
-import br.edu.ifsp.demo_clean.dto.response.LoanResponseDTO;
 import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.repository.LoanRepository;
 import br.edu.ifsp.demo_clean.repository.StockRepository;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
 import br.edu.ifsp.demo_clean.strategy.LoanPolicy;
-import br.mapper.LoanMapper;
 
 import org.springframework.stereotype.Service;
 
@@ -29,7 +27,7 @@ public class LoanService {
         this.stockRepository = stockRepository;
     }
 
-    public LoanResponseDTO register(int stockCode, String cpf) {
+    public Loan register(int stockCode, String cpf) {
         final Optional<Stock> exemplary = stockRepository.findById(stockCode);
         if (exemplary.isEmpty()) {
             throw new Error("Exemplar não encontrado!");
@@ -55,7 +53,7 @@ public class LoanService {
         loanRepository.save(loan);
         stockRepository.save(exemplary.get());
 
-        return LoanMapper.toDTO(loan);
+        return loan;
     }
 
     private boolean validateUser(User usuario) {
@@ -72,7 +70,7 @@ public class LoanService {
     }
 
     private boolean validaExemplar(Stock exemplar) {
-        return exemplar.isAvailability();
+        return exemplar.getAvailability();
     }
 
     private LocalDate calculateDueDate(User user, Book book) {
@@ -89,7 +87,7 @@ public class LoanService {
         return LocalDate.now().plusDays(days);
     }
 
-    public LoanResponseDTO devolution(int loanId) {
+    public Loan devolution(int loanId) {
         final Optional<Loan> loan = loanRepository.findById(loanId);
 
         if (loan.isEmpty()) {
@@ -105,19 +103,14 @@ public class LoanService {
         loanRepository.save(loan.get());
         stockRepository.save(loan.get().getStock());
 
-        return LoanMapper.toDTO(loan.get());
+        return loan.get();
     }
 
-    public List<LoanResponseDTO> listAssets() {
-        return loanRepository.findAllByDevolutionDateIsNull()
-                .stream()
-                .map(LoanMapper::toDTO)
-                .toList();
+    public List<Loan> listAssets() {
+        return loanRepository.findAllByDevolutionDateIsNull();
     }
 
-    public List<LoanResponseDTO> listHistory() {
-        return loanRepository.findAll().stream()
-                .map(LoanMapper::toDTO)
-                .toList();
+    public List<Loan> listHistory() {
+        return loanRepository.findAll();
     }
 }

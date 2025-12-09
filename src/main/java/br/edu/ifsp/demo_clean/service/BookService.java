@@ -49,7 +49,7 @@ public class BookService {
     }
 
     public List<Book> listBooks() {
-        return this.bookRepository.findAll();
+        return bookRepository.findAll();
     }
 
     public Book getBookByISBN(int isbn) {

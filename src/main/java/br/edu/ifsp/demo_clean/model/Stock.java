@@ -32,7 +32,7 @@ public class Stock {
         this.code = code;
     }
 
-    public boolean isAvailability() {
+    public boolean getAvailability() {
         return availability;
     }
 

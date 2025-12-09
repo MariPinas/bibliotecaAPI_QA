@@ -6,11 +6,11 @@ import br.edu.ifsp.demo_clean.model.Stock;
 import br.edu.ifsp.demo_clean.model.User;
 
 public class LoanResponseDTO {
-    private User user;
-    private Stock stock;
-    private LocalDate loanDate;
-    private LocalDate dueDate;
-    private LocalDate devolutionDate;
+    public User user;
+    public Stock stock;
+    public LocalDate loanDate;
+    public LocalDate dueDate;
+    public LocalDate devolutionDate;
 
     public LoanResponseDTO() {}
 
@@ -20,25 +20,5 @@ public class LoanResponseDTO {
         this.loanDate = loanDate;
         this.dueDate = dueDate;
         this.devolutionDate = devolutionDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Stock getStock() {
-        return stock;
-    }
-
-    public LocalDate getLoanDate() {
-        return loanDate;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public LocalDate getDevolutionDate() {
-        return devolutionDate;
     }
  }
