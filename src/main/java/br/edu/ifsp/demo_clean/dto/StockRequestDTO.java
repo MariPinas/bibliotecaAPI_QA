@@ -1,6 +1,6 @@
 package br.edu.ifsp.demo_clean.dto;
 
-public class StockDTO {
+public class StockRequestDTO {
     public int code;
     public boolean availability;
     public int isbn;

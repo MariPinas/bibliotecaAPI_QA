@@ -5,22 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/factory/UserFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/factory/UserRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/BaseUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/BaseUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LoanController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StockController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/BaseUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/BookDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/BookRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/LoanDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/LoanRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/StockDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/StockRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/BookResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/BookResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/LoanResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/LoanResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/StockResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/StockResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/UserResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/response/UserResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/factory/UserFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/factory/UserRegistry.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Stock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/enums/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/BookService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/StockService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/LibrarianLoanStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/LibrarianLoanStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/LoanStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/LoanStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/ProfessorLoanStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/ProfessorLoanStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/StudentLoanStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/strategy/StudentLoanStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/mapper/BookMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/mapper/LoanMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/mapper/StockMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/mapper/UserMapper.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +52,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -162,6 +184,20 @@
     </ignored-roots>
     <MESSAGE value="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README" />
     <option name="LAST_COMMIT_MESSAGE" value="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.InstantiationException" package="org.hibernate" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.Error" package="java.lang" />
+          <option name="timeStamp" value="8" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

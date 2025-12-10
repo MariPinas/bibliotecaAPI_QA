@@ -1,7 +1,7 @@
 package br.edu.ifsp.demo_clean.model;
 
-import br.edu.ifsp.demo_clean.model.enums.Course;
 import br.edu.ifsp.demo_clean.model.enums.UserStatus;
+import br.edu.ifsp.demo_clean.strategy.LoanPolicy;
 import br.edu.ifsp.demo_clean.strategy.LoanStrategy;
 import jakarta.persistence.*;
 
@@ -26,11 +26,6 @@ public abstract class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Course course;
-
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
@@ -40,13 +35,15 @@ public abstract class User {
     public User() {
     }
 
-    // Construtor para atributos comuns a todos os usuários
-    public User(String name, String cpf, String email, Course course, UserStatus status) {
+    public User(String name, String cpf, String email, UserStatus status) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
-        this.course = course;
         this.status = status;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -77,14 +74,6 @@ public abstract class User {
         this.email = email;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
     public UserStatus getStatus() {
         return status;
     }
@@ -94,7 +83,7 @@ public abstract class User {
     }
 
     @Transient
-    public abstract LoanStrategy<?> getLoanStrategy();
+    public abstract LoanStrategy getLoanStrategy();
 
     public int allActiveLoans() {
         return this.loans.stream().filter(loan -> !loan.isCompleted()).toList().size();

@@ -1,6 +1,6 @@
 package br.edu.ifsp.demo_clean.service;
 
-import br.edu.ifsp.demo_clean.dto.BookDTO;
+import br.edu.ifsp.demo_clean.dto.BookRequestDTO;
 import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.repository.BookRepository;
 
@@ -18,31 +18,31 @@ public class BookService {
 
     public void checkISBN(int isbn) {
         if (this.bookRepository.findByIsbn(isbn) != null) {
-            throw new Error("ISBN já cadastrado");
+            throw new IllegalArgumentException("ISBN já cadastrado");
         }
     }
 
     public void checkAuthorPublisherEdition(String author, String publisher, String edition) {
         if (this.bookRepository.findByAuthorAndPublisherAndEdition(author, publisher, edition) != null) {
-            throw new Error("ERRO: Dados de book já cadastrados!!!");
+            throw new IllegalArgumentException("ERRO: Dados de book já cadastrados!!!");
         }
     }
 
-    public Book addBook(BookDTO bookDTO) {
-        checkISBN(bookDTO.isbn);
+    public Book addBook(BookRequestDTO bookRequestDTO) {
+        checkISBN(bookRequestDTO.isbn);
         checkAuthorPublisherEdition(
-                bookDTO.author,
-                bookDTO.publisher,
-                bookDTO.edition
+                bookRequestDTO.author,
+                bookRequestDTO.publisher,
+                bookRequestDTO.edition
         );
 
         Book novoBook = new Book(
-                bookDTO.isbn,
-                bookDTO.title,
-                bookDTO.author,
-                bookDTO.publisher,
-                bookDTO.edition,
-                bookDTO.category
+                bookRequestDTO.isbn,
+                bookRequestDTO.title,
+                bookRequestDTO.author,
+                bookRequestDTO.publisher,
+                bookRequestDTO.edition,
+                bookRequestDTO.category
         );
 
         return this.bookRepository.save(novoBook);
@@ -56,30 +56,30 @@ public class BookService {
         return this.bookRepository.findByIsbn(isbn);
     }
 
-    public Book updateBook(BookDTO bookDTO, int isbn) {
+    public Book updateBook(BookRequestDTO bookRequestDTO, int isbn) {
         Book bookAtual = this.bookRepository.findByIsbn(isbn);
 
         if (bookAtual != null) {
-            if (bookDTO.isbn != bookAtual.getIsbn()) {
-                checkISBN(bookDTO.isbn);
+            if (bookRequestDTO.isbn != bookAtual.getIsbn()) {
+                checkISBN(bookRequestDTO.isbn);
             }
 
             checkAuthorPublisherEdition(
-                    bookDTO.author,
-                    bookDTO.publisher,
-                    bookDTO.edition
+                    bookRequestDTO.author,
+                    bookRequestDTO.publisher,
+                    bookRequestDTO.edition
             );
 
-            bookAtual.setIsbn(bookDTO.isbn);
-            bookAtual.setTitle(bookDTO.title);
-            bookAtual.setAuthor(bookDTO.author);
-            bookAtual.setEdition(bookDTO.edition);
-            bookAtual.setPublisher(bookDTO.publisher);
-            bookAtual.setCategory(bookDTO.category);
+            bookAtual.setIsbn(bookRequestDTO.isbn);
+            bookAtual.setTitle(bookRequestDTO.title);
+            bookAtual.setAuthor(bookRequestDTO.author);
+            bookAtual.setEdition(bookRequestDTO.edition);
+            bookAtual.setPublisher(bookRequestDTO.publisher);
+            bookAtual.setCategory(bookRequestDTO.category);
 
             return this.bookRepository.save(bookAtual);
         } else {
-            throw new Error("Book não encontrado com o isbn: " + isbn);
+            throw new IllegalArgumentException("Book não encontrado com o isbn: " + isbn);
         }
     }
 
@@ -90,7 +90,7 @@ public class BookService {
             this.bookRepository.delete(book);
             return book;
         } else {
-            throw new Error("Book não encontrado");
+            throw new IllegalArgumentException("Book não encontrado");
         }
     }
 }

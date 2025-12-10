@@ -1,6 +1,6 @@
 package br.edu.ifsp.demo_clean.service;
 
-import br.edu.ifsp.demo_clean.dto.StockDTO;
+import br.edu.ifsp.demo_clean.dto.StockRequestDTO;
 import br.edu.ifsp.demo_clean.model.Stock;
 import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.repository.StockRepository;
@@ -36,16 +36,16 @@ public class StockService {
         return stockLocalizado;
     }
 
-    public Stock addStock(StockDTO stockDTO) {
-        final Book book = bookService.getBookByISBN(stockDTO.isbn);
+    public Stock addStock(StockRequestDTO stockRequestDTO) {
+        final Book book = bookService.getBookByISBN(stockRequestDTO.isbn);
 
         if (book == null) {
-            throw new Error("ERRO: Não existe um book com o ISBN informado!");
+            throw new IllegalArgumentException("ERRO: Não existe um book com o ISBN informado!");
         }
 
         Stock stock = new Stock(
-                stockDTO.code,
-                stockDTO.availability,
+                stockRequestDTO.code,
+                stockRequestDTO.availability,
                 book);
 
         this.stockRepository.save(stock);
@@ -61,7 +61,7 @@ public class StockService {
 
             return stockRepository.save(stockLocalizado);
         } else {
-            throw new Error("Exemplar não encontrado");
+            throw new IllegalArgumentException("Exemplar não encontrado");
         }
     }
 
@@ -72,7 +72,7 @@ public class StockService {
             stockRepository.delete(stock);
             return stock;
         } else {
-            throw new Error("Erro ao excluir o exemplar. Ele não está disponível no momento.");
+            throw new IllegalArgumentException("Erro ao excluir o exemplar. Ele não está disponível no momento.");
         }
     }
 }

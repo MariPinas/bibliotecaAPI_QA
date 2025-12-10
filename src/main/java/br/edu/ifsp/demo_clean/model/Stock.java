@@ -1,6 +1,5 @@
 package br.edu.ifsp.demo_clean.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +11,6 @@ public class Stock {
     private boolean availability;
 
     @ManyToOne
-    @JsonBackReference
     public Book book;
 
     public Stock() {
