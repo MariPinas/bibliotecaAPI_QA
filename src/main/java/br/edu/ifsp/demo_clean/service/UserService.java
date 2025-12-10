@@ -93,7 +93,7 @@ public class UserService {
         if (user == null) {
             throw new IllegalArgumentException("Usuário não encontrado com CPF: " + cpf);
         }
-        if (user.allActiveLoans() > 0) {
+        if (!user.getAllActiveLoans().isEmpty()) {
             throw new IllegalArgumentException("Usuário não pode ser deletado pois possui empréstimos ativos.");
         }
         userRepository.delete(user);

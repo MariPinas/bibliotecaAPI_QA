@@ -18,7 +18,7 @@ public class ProfessorController extends BaseUserController<UserRequestDTO, User
 
     @Override
     protected User getParsedUser(UserRequestDTO dto) {
-        return new Professor(dto.name, dto.cpf, dto.email, dto.status);
+        return new Professor(dto.name, dto.cpf, dto.email);
     }
 
     @Override

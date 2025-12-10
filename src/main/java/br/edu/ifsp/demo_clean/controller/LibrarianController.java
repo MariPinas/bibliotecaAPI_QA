@@ -18,7 +18,7 @@ public class LibrarianController extends BaseUserController<UserRequestDTO, User
 
     @Override
     protected User getParsedUser(UserRequestDTO dto) {
-        return new Librarian(dto.name, dto.cpf, dto.email, dto.status);
+        return new Librarian(dto.name, dto.cpf, dto.email);
     }
 
     @Override

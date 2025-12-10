@@ -9,8 +9,8 @@ import jakarta.persistence.*;
 public class Professor extends User {
     public Professor() {}
 
-    public Professor(String name, String cpf, String email, UserStatus status) {
-        super(name, cpf, email, status);
+    public Professor(String name, String cpf, String email) {
+        super(name, cpf, email);
     }
 
     @Override

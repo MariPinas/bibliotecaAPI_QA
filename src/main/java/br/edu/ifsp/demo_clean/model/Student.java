@@ -13,8 +13,8 @@ public class Student extends User {
     public Student() {
     }
 
-    public Student(String name, String cpf, String email, UserStatus status, Course course) {
-        super(name, cpf, email, status);
+    public Student(String name, String cpf, String email, Course course) {
+        super(name, cpf, email);
         this.course = course;
     }
 

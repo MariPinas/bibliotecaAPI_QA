@@ -5,6 +5,7 @@ import br.edu.ifsp.demo_clean.strategy.LoanPolicy;
 import br.edu.ifsp.demo_clean.strategy.LoanStrategy;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,20 +27,16 @@ public abstract class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    private UserStatus status;
-
     @OneToMany(mappedBy = "user")
     public List<Loan> loans = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String name, String cpf, String email, UserStatus status) {
+    public User(String name, String cpf, String email) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
-        this.status = status;
     }
 
     public void setId(int id) {
@@ -75,18 +72,26 @@ public abstract class User {
     }
 
     public UserStatus getStatus() {
-        return status;
+        final List<Loan> activeLoans = getAllActiveLoans();
+        final int overdue = activeLoans.stream().reduce(0, (acc, loan) -> loan.isOverdue() ? acc + 1 : acc, Integer::sum);
+
+        if(overdue > 1) {
+            return UserStatus.SUSPENDED;
+        }
+
+        if(overdue > 0) {
+            return UserStatus.INACTIVE;
+        }
+
+        return UserStatus.ACTIVE;
     }
 
-    public void setStatus(UserStatus status) {
-        this.status = status;
-    }
 
     @Transient
     public abstract LoanStrategy getLoanStrategy();
 
-    public int allActiveLoans() {
-        return this.loans.stream().filter(loan -> !loan.isCompleted()).toList().size();
+    public List<Loan> getAllActiveLoans() {
+        return this.loans.stream().filter(loan -> !loan.isCompleted()).toList();
     }
 
     @Override

@@ -8,7 +8,6 @@ import br.edu.ifsp.demo_clean.model.enums.UserStatus;
 import br.edu.ifsp.demo_clean.repository.LoanRepository;
 import br.edu.ifsp.demo_clean.repository.StockRepository;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
-import br.edu.ifsp.demo_clean.strategy.LoanPolicy;
 
 import org.springframework.stereotype.Service;
 
@@ -58,7 +57,7 @@ public class LoanService {
     }
 
     private boolean validateUser(User user) {
-        final boolean canLend = user.allActiveLoans() < user.getLoanStrategy().getBookLimit();
+        final boolean canLend = user.getAllActiveLoans().size() < user.getLoanStrategy().getBookLimit();
         final boolean isActive = user.getStatus() == UserStatus.ACTIVE;
         
         return canLend && isActive;

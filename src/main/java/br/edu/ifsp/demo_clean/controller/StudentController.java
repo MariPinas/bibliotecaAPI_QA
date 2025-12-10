@@ -20,7 +20,7 @@ public class StudentController extends BaseUserController<StudentRequestDTO, Stu
 
     @Override
     protected User getParsedUser(StudentRequestDTO dto) {
-        return new Student(dto.name, dto.cpf, dto.email, dto.status, dto.course);
+        return new Student(dto.name, dto.cpf, dto.email, dto.course);
     }
 
     @Override

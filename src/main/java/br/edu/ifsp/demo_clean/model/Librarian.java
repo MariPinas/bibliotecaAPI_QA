@@ -9,8 +9,8 @@ import jakarta.persistence.*;
 public class Librarian extends User {
     public Librarian() {}
 
-    public Librarian(String name, String cpf, String email, UserStatus status) {
-        super(name, cpf, email, status);
+    public Librarian(String name, String cpf, String email) {
+        super(name, cpf, email);
     }
 
     @Override

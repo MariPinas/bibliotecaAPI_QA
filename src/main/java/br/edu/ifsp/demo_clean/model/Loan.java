@@ -82,4 +82,8 @@ public class Loan {
     public boolean isCompleted() {
         return devolutionDate != null;
     }
+
+    public boolean isOverdue() {
+        return LocalDate.now().isAfter(dueDate);
+    }
 }
