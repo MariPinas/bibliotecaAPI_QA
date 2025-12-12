@@ -18,7 +18,7 @@ class UserTest {
             super(name, cpf, email);
         }
         @Override
-        public LoanStrategy<?> getLoanStrategy() {
+        public LoanStrategy getLoanStrategy() {
             return mock(LoanStrategy.class);
         }
     }
@@ -102,7 +102,7 @@ class UserTest {
         private Loan loan1;
         private Loan loan2;
         private Loan loan3;
-        private Stock mockStock; // Novo: precisamos de um Stock
+        private Stock mockStock;
 
         @BeforeEach
         void setupLoans() {
@@ -134,19 +134,20 @@ class UserTest {
         }
 
         @Test
-        @DisplayName("Deve retornar 0 quando não há empréstimos")
+        @DisplayName("Should return zero when no loans")
         void shouldReturnZeroWhenNoLoans() {
-            assertEquals(0, user.allActiveLoans());
+            assertEquals(0, user.getAllActiveLoans().size());
+
         }
 
         @Test
-        @DisplayName("Deve retornar a contagem correta de empréstimos ativos")
+        @DisplayName("Should return correct number of active loans")
         void shouldReturnCorrectNumberOfActiveLoans() {
             user.loans.add(loan1);
             user.loans.add(loan2);
             user.loans.add(loan3);
 
-            assertEquals(2, user.allActiveLoans());
+            assertEquals(2, user.getAllActiveLoans().size());
         }
     }
 }

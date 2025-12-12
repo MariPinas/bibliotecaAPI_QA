@@ -46,7 +46,7 @@ class ProfessorTest {
         }
 
         @Test
-        @DisplayName("Deve retornar a representação em String correta herdada")
+        @DisplayName("Should return correct toString representation inherited")
         void shouldReturnCorrectToString() {
             String expected = "Usuario{id=0, nome='" + DEFAULT_NAME + "', cpf='" + DEFAULT_CPF + "', email='" + DEFAULT_EMAIL + "'}";
             assertEquals(expected, professor.toString());
@@ -54,13 +54,12 @@ class ProfessorTest {
     }
 
     @Nested
-    @DisplayName("Lógica Específica de Professor")
     class ProfessorSpecificLogicTests {
 
         @Test
-        @DisplayName("Deve retornar a estratégia de empréstimo correta para Professor")
+        @DisplayName("Should return ProfessorLoanStrategy")
         void shouldReturnProfessorLoanStrategy() {
-            LoanStrategy<?> strategy = professor.getLoanStrategy();
+            LoanStrategy strategy = professor.getLoanStrategy();
 
             assertNotNull(strategy);
             assertTrue(strategy instanceof ProfessorLoanStrategy,
@@ -68,7 +67,7 @@ class ProfessorTest {
         }
 
         @Test
-        @DisplayName("A estratégia deve ter a política de empréstimo correta (5 livros / 40 dias)")
+        @DisplayName("Should have correct loan policy")
         void shouldHaveCorrectLoanPolicy() {
             ProfessorLoanStrategy strategy = (ProfessorLoanStrategy) professor.getLoanStrategy();
             LoanPolicy expectedPolicy = new LoanPolicy(5, 40);
@@ -82,7 +81,7 @@ class ProfessorTest {
     @Nested
     class FactoryTests {
         @Test
-        @DisplayName("O bloco estático deve ter registrado o Professor na fábrica")
+        @DisplayName("Should be registered in User registry with correct DiscriminatorValue")
         void shouldBeRegisteredInUserRegistry() {
             assertNotNull(Professor.class.getAnnotation(DiscriminatorValue.class));
             assertEquals("PROFESSOR", Professor.class.getAnnotation(DiscriminatorValue.class).value());

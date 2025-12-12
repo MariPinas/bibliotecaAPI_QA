@@ -23,7 +23,7 @@ class StudentTest {
 
     @BeforeEach
     void setUp() {
-        student = new Student(DEFAULT_NAME, DEFAULT_CPF, DEFAULT_EMAIL, DEFAULT_COURSE, DEFAULT_STATUS);
+        student = new Student(DEFAULT_NAME, DEFAULT_CPF, DEFAULT_EMAIL, DEFAULT_COURSE);
     }
 
     @Nested
@@ -60,13 +60,6 @@ class StudentTest {
         }
 
         @Test
-        @DisplayName("Should allow status change")
-        void shouldAllowStatusChange() {
-            student.setStatus(UserStatus.INACTIVE);
-            assertEquals(UserStatus.INACTIVE, student.getStatus());
-        }
-
-        @Test
         @DisplayName("Should return correct toString representation")
         void shouldReturnCorrectToString() {
             String expected = "Usuario{id=0, nome='Renan Martins', cpf='55566677788', email='renan.martins@aluno.ifsp.edu.br', curso=ADS, status=ACTIVE}";
@@ -80,7 +73,7 @@ class StudentTest {
         @Test
         @DisplayName("Should return correct loan strategy for Student")
         void shouldReturnStudentLoanStrategy() {
-            LoanStrategy<?> strategy = student.getLoanStrategy();
+            LoanStrategy strategy = student.getLoanStrategy();
             assertNotNull(strategy);
             assertTrue(strategy instanceof StudentLoanStrategy,
                     "A estrategia deve ser do tipo StudentLoanStrategy");
@@ -89,7 +82,7 @@ class StudentTest {
         @Test
         @DisplayName("Should have correct loan policy (3 books / 15 days)")
         void shouldHaveCorrectLoanPolicy() {
-            LoanStrategy<?> strategy = student.getLoanStrategy();
+            LoanStrategy strategy = student.getLoanStrategy();
             assertDoesNotThrow(() -> {
                 student.getLoanStrategy();
             }, "A criacao da estrategia nao deve lançar excecoes.");

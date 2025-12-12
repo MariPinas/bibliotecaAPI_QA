@@ -1,10 +1,9 @@
 package br.edu.ifsp.demo_clean.service;
 
-import br.edu.ifsp.demo_clean.dto.UserDTO;
-import br.edu.ifsp.demo_clean.factory.UserRegistry;
-import br.edu.ifsp.demo_clean.model.*;
-
+import br.edu.ifsp.demo_clean.model.Loan;
+import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -14,147 +13,209 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+@DisplayName("UserService - Functional and Validation Tests")
+public class UserServiceTest {
+
     @Mock
     private UserRepository userRepository;
+
     @InjectMocks
     private UserService userService;
 
-    private static final String VALID_CPF = "78290777035";
-    private static final String NON_EXISTENT_CPF = "99999999999";
-    private static final String EXISTING_CPF = "08928682010";
+    @Mock
+    private User validUser;
 
-    private UserDTO baseDto;
-    private Student mockStudent;
-    private Professor mockProfessor;
-
-    @BeforeEach
-    void setUp() {
-        baseDto = new UserDTO();
-        baseDto.cpf = VALID_CPF;
-        baseDto.name = "Novo Usuário";
-        baseDto.email = "novo@teste.com";
-
-        mockStudent = mock(Student.class);
-        mockProfessor = mock(Professor.class);
-    }
+    private static final String VALID_CPF = "89429659030";
+    private static final String NON_EXISTENT_CPF = "46545446576";
+    private static final int TEST_ID = 1;
 
     @Nested
-    class AddUserTests {
-        private Professor mockCreatedProfessor;
-
-        @BeforeEach
-        void setupAddUser() {
-            mockCreatedProfessor = mock(Professor.class);
-        }
+    @DisplayName("CPF Validation Tests (checkCpf) in addUser")
+    class CheckCpfTests {
 
         @Test
-        @DisplayName("Should add user professor successfully when CPF is unique")
-        void shouldAddUserSuccessfully() {
+        @DisplayName("Should pass with valid and available CPF")
+        void checkCpf_ShouldPassForValidAndAvailableCpf() {
+            when(validUser.getCpf()).thenReturn(VALID_CPF);
+
             when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.empty());
-            when(userRepository.save(any(Professor.class))).thenReturn(mockCreatedProfessor);
+            when(userRepository.save(any(User.class))).thenReturn(validUser);
 
-            try (var mockedUserRegistry = mockStatic(UserRegistry.class)) {
-                when(UserRegistry.create(any(UserDTO.class), eq(Professor.class)))
-                        .thenReturn(mock(Professor.class));
 
-                User createdUser = userService.addUser(baseDto, Professor.class);
+            assertDoesNotThrow(() -> userService.addUser(validUser));
 
-                assertEquals(mockCreatedProfessor, createdUser);
-                verify(userRepository, times(1)).findByCpf(VALID_CPF);
-                verify(userRepository, times(1)).save(any(Professor.class));
-            } catch (Exception e) {
-                fail("Nao deveria ter lançado excecao: " + e.getMessage());
-            }
+
+            verify(userRepository, times(1)).save(validUser);
         }
 
         @Test
-        @DisplayName("Should fail to add user if CPF already exists")
-        void shouldFailIfCpfAlreadyExists() {
-            when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.of(mockStudent));
+        @DisplayName("Should fail if CPF is null or invalid (format)")
+        void checkCpf_ShouldThrowException_WhenCpfIsNull() {
+            when(validUser.getCpf()).thenReturn(null);
+            assertThrows(IllegalArgumentException.class, () -> userService.addUser(validUser));
 
-            Error error = assertThrows(Error.class, () -> {
-                userService.addUser(baseDto, Professor.class);
-            });
-
-            assertTrue(error.getMessage().contains("já cadastrado"));
-            verify(userRepository, never()).save(any());
+            when(validUser.getCpf()).thenReturn("123");
+            assertThrows(IllegalArgumentException.class, () -> userService.addUser(validUser));
         }
 
+        @Test
+        @DisplayName("Should fail if CPF is sequential (e.g., 11111111111)")
+        void checkCpf_ShouldThrowException_WhenCpfIsSequential() {
+            when(validUser.getCpf()).thenReturn("11111111111");
+
+            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                    () -> userService.addUser(validUser)
+            );
+            assertTrue(exception.getMessage().contains("sequência repetida"));
+        }
+
+        @Test
+        @DisplayName("Should fail if the first verification digit is incorrect")
+        void checkCpf_ShouldThrowException_WhenFirstVerifierDigitIsIncorrect() {
+
+            when(validUser.getCpf()).thenReturn("12345678919");
+
+            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                    () -> userService.addUser(validUser)
+            );
+
+            assertTrue(exception.getMessage().contains("primeiro dígito verificador incorreto"));
+        }
+
+        @Test
+        @DisplayName("Should fail if the CPF is already registered")
+        void checkCpf_ShouldThrowException_WhenCpfIsAlreadyRegistered() {
+
+            when(validUser.getCpf()).thenReturn(VALID_CPF);
+
+            when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.of(mock(User.class)));
+
+            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                    () -> userService.addUser(validUser)
+            );
+
+            assertTrue(exception.getMessage().contains("já cadastrado"));
+        }
     }
 
     @Nested
-    class GetUserTests {
+    @DisplayName("Retrieval Tests (getUser and getUsers)")
+    class GetUsersTests {
 
         @Test
-        @DisplayName("Should return user when found by CPF")
-        void shouldThrowErrorWhenUserNotFound() {
+        @DisplayName("getUser: Should find and return an existing user")
+        void getUser_ShouldReturnUser_WhenUserExists() {
+            when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.of(validUser));
+
+            User result = userService.getUser(VALID_CPF);
+
+            assertNotNull(result);
+            assertEquals(validUser.getId(), result.getId());
+        }
+
+        @Test
+        @DisplayName("getUser: Should fail when searching for a non-existent user")
+        void getUser_ShouldThrowException_WhenUserDoesNotExist() {
             when(userRepository.findByCpf(NON_EXISTENT_CPF)).thenReturn(Optional.empty());
 
-            Error error = assertThrows(Error.class, () -> {
-                userService.getUser(NON_EXISTENT_CPF);
-            });
-
-            assertTrue(error.getMessage().contains("não encontrado"), "A mensagem de erro deve conter 'não encontrado'.");
-            verify(userRepository, times(1)).findByCpf(NON_EXISTENT_CPF);
-        }
-    }
-
-    @Nested
-    class UpdateUserTests {
-        private UserDTO updateDto;
-
-        @BeforeEach
-        void setupUpdate() {
-            updateDto = new UserDTO();
+            assertThrows(IllegalArgumentException.class,
+                    () -> userService.getUser(NON_EXISTENT_CPF)
+            );
         }
 
         @Test
-        @DisplayName("Should update name and email on student")
-        void shouldUpdateNameAndEmailOnStudent() {
-            when(userRepository.findByCpf(EXISTING_CPF)).thenReturn(Optional.of(mockStudent));
-            when(userRepository.save(any(User.class))).thenAnswer(i -> i.getArgument(0)); // Retorna o mesmo mock
+        @DisplayName("getUsers: Should return all users")
+        void getUsers_ShouldReturnAllUsers() {
+            List<User> expectedList = List.of(validUser, mock(User.class));
+            when(userRepository.findAll()).thenReturn(expectedList);
 
-            updateDto.name = "Novo Nome";
-            updateDto.email = "novo@email.com";
+            List<User> resultList = userService.getUsers();
 
-            userService.updateUser(updateDto, EXISTING_CPF);
+            assertNotNull(resultList);
+            assertEquals(2, resultList.size());
+            verify(userRepository, times(1)).findAll();
         }
-
     }
 
     @Nested
+    @DisplayName("UpdateUser Method Tests")
+    class UpdateUserTests {
+
+        @Test
+        @DisplayName("Should update and save user with the original ID")
+        void updateUser_ShouldSetIdAndSave() {
+            User existingUser = mock(User.class);
+            when(existingUser.getId()).thenReturn(10);
+
+            User userFromDTO = mock(User.class);
+
+            when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.of(existingUser));
+            when(userRepository.save(any(User.class))).thenReturn(userFromDTO);
+
+            User result = userService.updateUser(userFromDTO, VALID_CPF);
+
+            assertNotNull(result);
+            verify(userFromDTO).setId(10);
+            verify(userRepository, times(1)).save(userFromDTO);
+        }
+
+        @Test
+        @DisplayName("Should fail when trying to update a non-existent user")
+        void updateUser_ShouldThrowException_WhenUserDoesNotExist() {
+            when(userRepository.findByCpf(NON_EXISTENT_CPF)).thenReturn(Optional.empty());
+
+            assertThrows(IllegalArgumentException.class,
+                    () -> userService.updateUser(mock(User.class), NON_EXISTENT_CPF)
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("DeleteUser Method Tests")
     class DeleteUserTests {
 
         @Test
-        @DisplayName("Should delete user if no active loans")
-        void shouldDeleteUserIfNoActiveLoans() {
-            when(userRepository.findByCpf(EXISTING_CPF)).thenReturn(Optional.of(mockStudent));
-            when(mockStudent.allActiveLoans()).thenReturn(0);
+        @DisplayName("Should delete a user without active loans")
+        void deleteUser_ShouldDeleteUser_WhenNoActiveLoans() {
+            when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.of(validUser));
 
-            userService.deleteUser(EXISTING_CPF);
+            User result = userService.deleteUser(VALID_CPF);
 
-            verify(userRepository, times(1)).delete(mockStudent);
+            assertNotNull(result);
+            verify(userRepository, times(1)).delete(validUser);
         }
 
         @Test
-        @DisplayName("Should throw error if user has active loans")
-        void shouldThrowErrorIfUserHasActiveLoans() {
-            when(userRepository.findByCpf(EXISTING_CPF)).thenReturn(Optional.of(mockStudent));
-            when(mockStudent.allActiveLoans()).thenReturn(2);
-            Error error = assertThrows(Error.class, () -> {
-                userService.deleteUser(EXISTING_CPF);
-            });
+        @DisplayName("Should fail to delete user with active loans")
+        void deleteUser_ShouldThrowException_WhenActiveLoansExist() {
+            when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.of(validUser));
 
-            assertTrue(error.getMessage().contains("empréstimos ativos"), "A mensagem de erro deve indicar empréstimos ativos.");
-            verify(userRepository, never()).delete(any());
+            Loan activeLoan = mock(Loan.class);
+            when(validUser.getAllActiveLoans()).thenReturn(List.of(activeLoan));
+
+            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                    () -> userService.deleteUser(VALID_CPF)
+            );
+            assertTrue(exception.getMessage().contains("possui empréstimos ativos"));
+            verify(userRepository, never()).delete(any(User.class));
         }
 
+        @Test
+        @DisplayName("Should fail when trying to delete a non-existent user")
+        void deleteUser_ShouldThrowException_WhenUserDoesNotExist() {
+            when(userRepository.findByCpf(NON_EXISTENT_CPF)).thenReturn(Optional.empty());
+
+            assertThrows(IllegalArgumentException.class,
+                    () -> userService.deleteUser(NON_EXISTENT_CPF)
+            );
+            verify(userRepository, never()).delete(any(User.class));
+        }
     }
 }
