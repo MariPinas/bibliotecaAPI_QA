@@ -1,6 +1,8 @@
 package br.edu.ifsp.demo_clean.controller;
 
-import br.edu.ifsp.demo_clean.dto.StockDTO;
+import br.edu.ifsp.demo_clean.dto.StockRequestDTO;
+import br.edu.ifsp.demo_clean.dto.response.BaseResponseDTO;
+import br.edu.ifsp.demo_clean.dto.response.StockResponseDTO;
 import br.edu.ifsp.demo_clean.model.Stock;
 import br.edu.ifsp.demo_clean.service.StockService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/library/stock")
 @Tag(name = "Estoques", description = "Responsável por controlar o estoque")
-public class StockController {
+public class StockController extends BaseController {
     private final StockService stockService;
 
     public StockController(StockService stockService) {
@@ -18,38 +20,22 @@ public class StockController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Stock> getById(@PathVariable int id) {
-        try {
-            return ResponseEntity.ok(stockService.getById(id));
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(null);
-        }
+    public ResponseEntity<BaseResponseDTO<StockResponseDTO>> getById(@PathVariable int id) {
+        return handleRequest(() -> new StockResponseDTO(stockService.getById(id)));
     }
 
     @PostMapping
-    public ResponseEntity<Stock> addStock(@RequestBody StockDTO stock) {
-        try {
-            return ResponseEntity.ok(stockService.addStock(stock));
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(null);
-        }
+    public ResponseEntity<BaseResponseDTO<StockResponseDTO>> addStock(@RequestBody StockRequestDTO stock) {
+        return handleRequest(() -> new StockResponseDTO(stockService.addStock(stock)));
     }
 
     @PutMapping
-    public ResponseEntity<Stock> updateStock(@RequestBody Stock stock) {
-        try {
-            return ResponseEntity.ok(stockService.updateStock(stock));
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(null);
-        }
+    public ResponseEntity<BaseResponseDTO<StockResponseDTO>> updateStock(@RequestBody Stock stock) {
+        return handleRequest(() -> new StockResponseDTO(stockService.updateStock(stock)));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Stock> deleteStock(@PathVariable int id) {
-        try {
-            return ResponseEntity.ok(stockService.deleteStock(id));
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(null);
-        }
+    public ResponseEntity<BaseResponseDTO<StockResponseDTO>> deleteStock(@PathVariable int id) {
+        return handleRequest(() -> new StockResponseDTO(stockService.deleteStock(id)));
     }
 }

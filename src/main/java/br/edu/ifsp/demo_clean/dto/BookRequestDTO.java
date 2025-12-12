@@ -2,7 +2,7 @@ package br.edu.ifsp.demo_clean.dto;
 
 import br.edu.ifsp.demo_clean.model.enums.BookCategory;
 
-public class BookDTO {
+public class BookRequestDTO {
     public int isbn;
     public String title;
     public String author;

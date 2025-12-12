@@ -1,9 +1,6 @@
 package br.edu.ifsp.demo_clean.controller;
 
-import br.edu.ifsp.demo_clean.model.Book;
-import br.edu.ifsp.demo_clean.model.Loan;
-import br.edu.ifsp.demo_clean.model.Stock;
-import br.edu.ifsp.demo_clean.model.User;
+import br.edu.ifsp.demo_clean.dto.response.*;
 import br.edu.ifsp.demo_clean.service.BookService;
 import br.edu.ifsp.demo_clean.service.LoanService;
 import br.edu.ifsp.demo_clean.service.StockService;
@@ -17,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/library/report")
 @Tag(name = "Relatórios", description = "Responsável por listar relatórios")
-public class ReportController {
+public class ReportController extends BaseController {
     private final BookService bookService;
     private final UserService userService;
     private final StockService stockService;
@@ -30,36 +27,28 @@ public class ReportController {
         this.loanService = loanService;
     }
 
-    private <T> ResponseEntity<List<T>> handleReport(List<T> list) {
-        try {
-            return ResponseEntity.ok(list);
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(null);
-        }
-    }
-
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        return handleReport(userService.getUsers());
+    public ResponseEntity<BaseResponseDTO<List<UserResponseDTO>>> getUsers() {
+        return handleRequest(() -> userService.getUsers().stream().map(UserResponseDTO::new).toList());
     }
 
-    @GetMapping({ "/books" })
-    public ResponseEntity<List<Book>> getBooks() {
-        return handleReport(bookService.listBooks());
+    @GetMapping({"/books"})
+    public ResponseEntity<BaseResponseDTO<List<BookResponseDTO>>> getBooks() {
+        return handleRequest(() -> bookService.listBooks().stream().map(BookResponseDTO::new).toList());
     }
 
     @GetMapping("/stock")
-    public ResponseEntity<List<Stock>> getStock() {
-        return handleReport(stockService.getAllAvailable());
+    public ResponseEntity<BaseResponseDTO<List<StockResponseDTO>>> getStock() {
+        return handleRequest(() -> stockService.getAllAvailable().stream().map(StockResponseDTO::new).toList());
     }
 
     @GetMapping("/loan/assets")
-    public ResponseEntity<List<Loan>> getAssets() {
-        return handleReport(loanService.listAssets());
+    public ResponseEntity<BaseResponseDTO<List<LoanResponseDTO>>> getAssets() {
+        return handleRequest(() -> loanService.listAssets().stream().map(LoanResponseDTO::new).toList());
     }
 
     @GetMapping("/loan/history")
-    public ResponseEntity<List<Loan>> getHistory() {
-        return handleReport(loanService.listHistory());
+    public ResponseEntity<BaseResponseDTO<List<LoanResponseDTO>>> getHistory() {
+        return handleRequest(() -> loanService.listHistory().stream().map(LoanResponseDTO::new).toList());
     }
 }

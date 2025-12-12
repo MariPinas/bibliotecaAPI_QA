@@ -5,7 +5,7 @@ public enum Course {
     PEDAGOGY,
     ADMINISTRATION;
 
-    public boolean livroRelacionado(BookCategory bookCategory) {
+    public boolean isRelated(BookCategory bookCategory) {
         return switch (this) {
             case ADS -> bookCategory.equals(BookCategory.COMPUTING);
             case PEDAGOGY -> bookCategory.equals(BookCategory.LETTERS);
