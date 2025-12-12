@@ -4,10 +4,11 @@ import br.edu.ifsp.demo_clean.model.Loan;
 import br.edu.ifsp.demo_clean.model.Stock;
 import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.model.User;
+import br.edu.ifsp.demo_clean.model.enums.UserStatus;
 import br.edu.ifsp.demo_clean.repository.LoanRepository;
 import br.edu.ifsp.demo_clean.repository.StockRepository;
 import br.edu.ifsp.demo_clean.repository.UserRepository;
-import br.edu.ifsp.demo_clean.strategy.LoanPolicy;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,20 +30,20 @@ public class LoanService {
     public Loan register(int stockCode, String cpf) {
         final Optional<Stock> exemplary = stockRepository.findById(stockCode);
         if (exemplary.isEmpty()) {
-            throw new Error("Exemplar não encontrado!");
+            throw new IllegalArgumentException("Exemplar não encontrado!");
         }
 
         final Optional<User> user = userRepository.findByCpf(cpf);
         if (user.isEmpty()) {
-            throw new Error("Usuário não encontrado!");
+            throw new IllegalArgumentException("Usuário não encontrado!");
         }
 
         if (!validateUser(user.get())) {
-            throw new Error("Usuário inválido");
+            throw new IllegalArgumentException("Usuário inválido");
         }
 
-        if (!validaExemplar(exemplary.get())) {
-            throw new Error("Exemplar não disponível");
+        if (!exemplary.get().getAvailability()) {
+            throw new IllegalArgumentException("Exemplar não disponível");
         }
 
         final LocalDate dueDate = calculateDueDate(user.get(), exemplary.get().book);
@@ -55,30 +56,16 @@ public class LoanService {
         return loan;
     }
 
-    private boolean validateUser(User usuario) {
-        // temporariamente comentei a verificacao de status que chamava usuario.getStatus(),
-        // porque como eu mudei a classe user, nao tava conseguindo rodar pra testar oq eu fiz
-        // final boolean userIsActive = usuario.getStatus().equals(UserStatus.ATIVO);
-        LoanPolicy policy = usuario.getLoanStrategy().getPolicy();
-
-        final boolean copyAvailable = usuario.allActiveLoans() < policy.getMaxBooks();
-        // retornando apenas a verificacao de limite
-        return copyAvailable;
-    }
-
-    private boolean validaExemplar(Stock exemplar) {
-        return exemplar.isAvailability();
+    private boolean validateUser(User user) {
+        final boolean canLend = user.getAllActiveLoans().size() < user.getLoanStrategy().getBookLimit();
+        final boolean isActive = user.getStatus() == UserStatus.ACTIVE;
+        
+        return canLend && isActive;
     }
 
     private LocalDate calculateDueDate(User user, Book book) {
-        LoanPolicy policy = user.getLoanStrategy().getPolicy();
-
-        int days = policy.getLoanDays();
-
-        // comentado temporariamente
-        // if(user.getCategory().equals(UserCategory.ALUNO) && user.getCourse().livroRelacionado(book.categoria)) {
-        //     days = 30;
-        // }
+        final var strategy = user.getLoanStrategy();
+        final int days = strategy.calculateLoanTermInDays(user, book);
 
         return LocalDate.now().plusDays(days);
     }
@@ -86,12 +73,12 @@ public class LoanService {
     public Loan devolution(int loanId) {
         final Optional<Loan> loan = loanRepository.findById(loanId);
 
-        if(loan.isEmpty()) {
-            throw new Error("Empréstimo não encontrado!");
+        if (loan.isEmpty()) {
+            throw new IllegalArgumentException("Empréstimo não encontrado!");
         }
 
-        if(loan.get().isCompleted()) {
-            throw new Error("Devolução já realizada!");
+        if (loan.get().isCompleted()) {
+            throw new IllegalArgumentException("Devolução já realizada!");
         }
 
         loan.get().setDevolutionDate(LocalDate.now());

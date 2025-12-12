@@ -1,7 +1,9 @@
 package br.edu.ifsp.demo_clean.strategy;
 
-public class ProfessorLoanStrategy implements LoanStrategy<LoanPolicy> {
+import br.edu.ifsp.demo_clean.model.Book;
+import br.edu.ifsp.demo_clean.model.User;
 
+public class ProfessorLoanStrategy implements LoanStrategy {
     private final LoanPolicy policy;
 
     public ProfessorLoanStrategy(LoanPolicy policy) {
@@ -9,8 +11,13 @@ public class ProfessorLoanStrategy implements LoanStrategy<LoanPolicy> {
     }
 
     @Override
-    public LoanPolicy getPolicy() {
-        return policy;
+    public int calculateLoanTermInDays(User user, Book book) {
+        return policy.getLoanDays();
+    }
+
+    @Override
+    public int getBookLimit() {
+        return policy.getMaxBooks();
     }
 }
 
