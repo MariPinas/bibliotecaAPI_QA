@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45da6cc4-0c69-41f6-8915-6a3ee126fb4a" name="Changes" comment="" />
+    <list default="true" id="45da6cc4-0c69-41f6-8915-6a3ee126fb4a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../src/test/java/br/edu/ifsp/demo_clean/service/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/test/java/br/edu/ifsp/demo_clean/service/BookServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,9 +38,10 @@
     "Application.DemoCleanApplication.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "tests",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/renanmartins/Documents/Sistemas/BibliotecaAPI/bibliotecaAPI_QA/demo_clean"
   }

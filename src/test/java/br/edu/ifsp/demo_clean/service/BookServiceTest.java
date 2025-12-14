@@ -4,7 +4,6 @@ import br.edu.ifsp.demo_clean.dto.BookRequestDTO;
 import br.edu.ifsp.demo_clean.model.Book;
 import br.edu.ifsp.demo_clean.model.enums.BookCategory;
 import br.edu.ifsp.demo_clean.repository.BookRepository;
-import br.edu.ifsp.demo_clean.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
