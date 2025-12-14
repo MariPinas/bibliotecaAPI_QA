@@ -58,7 +58,7 @@ class LibrarianTest {
         @Test
         @DisplayName("Should return LibrarianLoanStrategy")
         void shouldReturnLibrarianLoanStrategy() {
-            LoanStrategy<?> strategy = librarian.getLoanStrategy();
+            LoanStrategy strategy = librarian.getLoanStrategy();
             assertNotNull(strategy);
             assertTrue(strategy instanceof LibrarianLoanStrategy,
                     "A estrategia deve ser do tipo LibrarianLoanStrategy");
@@ -67,11 +67,10 @@ class LibrarianTest {
         @Test
         @DisplayName("Should handle zero loan policy without exceptions")
         void shouldHaveZeroLoanPolicy() {
-            LoanStrategy<?> strategy = librarian.getLoanStrategy();
+            LoanStrategy strategy = librarian.getLoanStrategy();
             assertDoesNotThrow(() -> {
                 librarian.getLoanStrategy();
             }, "A criacao da estrategia com 0/0 nao deve lancar excecoes.");
-
         }
     }
 }

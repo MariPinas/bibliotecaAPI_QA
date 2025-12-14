@@ -1,8 +1,12 @@
 package br.edu.ifsp.demo_clean.controller;
-import br.edu.ifsp.demo_clean.dto.UserDTO;
+import br.edu.ifsp.demo_clean.dto.UserRequestDTO;
+import br.edu.ifsp.demo_clean.dto.response.BaseResponseDTO;
+import br.edu.ifsp.demo_clean.dto.response.UserResponseDTO;
+import br.edu.ifsp.demo_clean.model.Librarian;
 import br.edu.ifsp.demo_clean.model.Professor;
 import br.edu.ifsp.demo_clean.model.User;
 import br.edu.ifsp.demo_clean.service.UserService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,19 +34,25 @@ class BaseUserControllerTest {
         }
 
         @Override
-        protected Class<? extends User> getUserClass() {
-            return Professor.class;
+        protected User getParsedUser(UserRequestDTO dto) {
+            return new Professor(dto.name, dto.cpf, dto.email);
+        }
+
+        @Override
+        protected UserResponseDTO userToDTO(User user) {
+            return new UserResponseDTO(user);
         }
     }
     private static final String MOCK_CPF = "12345678900";
-    private UserDTO baseDto;
+    private UserRequestDTO baseDto;
     private Professor mockUser;
 
     @BeforeEach
     void setUp() {
-        baseDto = new UserDTO();
+        baseDto = new UserRequestDTO();
         baseDto.cpf = MOCK_CPF;
         baseDto.name = "Teste User";
+        baseDto.email = "teste@teste.com";
 
         mockUser = mock(Professor.class);
     }
@@ -51,26 +61,33 @@ class BaseUserControllerTest {
     @Test
     @DisplayName("POST / - Should return 200 OK and created user")
     void addUser_shouldReturnOkAndCreatedUser() {
-        when(userService.addUser(baseDto, Professor.class)).thenReturn(mockUser);
+        when(userService.addUser(any(User.class))).thenReturn(mockUser);
 
-        ResponseEntity<?> response = controller.addUser(baseDto);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response = controller.addUser(baseDto);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockUser, response.getBody());
-        verify(userService, times(1)).addUser(baseDto, Professor.class);
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(mockUser.getId(), response.getBody().data.id);
+        assertEquals(mockUser.getName(), response.getBody().data.name);
+        assertEquals(mockUser.getCpf(), response.getBody().data.cpf);
+        verify(userService, times(1)).addUser(any(User.class));
     }
 
     @Test
-    @DisplayName("POST / - Should return 500 INTERNAL_SERVER_ERROR on error")
+    @DisplayName("POST / - Should return error message: CPF já cadastrado.")
     void addUser_shouldReturnInternalServerErrorOnError() {
         String errorMessage = "CPF já cadastrado.";
-        when(userService.addUser(baseDto, Professor.class)).thenThrow(new Error(errorMessage));
+        when(userService.addUser(any(User.class)))
+                .thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<?> response = controller.addUser(baseDto);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response =
+                controller.addUser(baseDto);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals(errorMessage, response.getBody());
-        verify(userService, times(1)).addUser(baseDto, Professor.class);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(errorMessage, response.getBody().message);
+
+        verify(userService, times(1)).addUser(any(User.class));
     }
 
 
@@ -79,22 +96,28 @@ class BaseUserControllerTest {
     void getUser_shouldReturnOkAndFoundUser() {
         when(userService.getUser(MOCK_CPF)).thenReturn(mockUser);
 
-        ResponseEntity<User> response = controller.getUser(MOCK_CPF);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response = controller.getUser(MOCK_CPF);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockUser, response.getBody());
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(mockUser.getId(), response.getBody().data.id);
+        assertEquals(mockUser.getCpf(), response.getBody().data.cpf);
+        assertEquals(mockUser.getName(), response.getBody().data.name);
+        assertEquals(mockUser.getEmail(), response.getBody().data.email);
         verify(userService, times(1)).getUser(MOCK_CPF);
     }
 
     @Test
     @DisplayName("GET /{cpf} - Should return 500 INTERNAL_SERVER_ERROR on error")
     void getUser_shouldReturnInternalServerErrorOnError() {
-        when(userService.getUser(MOCK_CPF)).thenThrow(new Error("Usuário não encontrado."));
+        String errorMessage = "Usuário não encontrado.";
+        when(userService.getUser(MOCK_CPF)).thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<User> response = controller.getUser(MOCK_CPF);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response = controller.getUser(MOCK_CPF);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals(null, response.getBody());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(errorMessage, response.getBody().message);
         verify(userService, times(1)).getUser(MOCK_CPF);
     }
 
@@ -102,25 +125,31 @@ class BaseUserControllerTest {
     @Test
     @DisplayName("PUT /{cpf} - Should return 200 OK and updated user")
     void updateUser_shouldReturnOkAndUpdatedUser() {
-        when(userService.updateUser(baseDto, MOCK_CPF)).thenReturn(mockUser);
+        when(userService.updateUser(any(User.class), eq(MOCK_CPF))).thenReturn(mockUser);
 
-        ResponseEntity<User> response = controller.updateUser(baseDto, MOCK_CPF);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response = controller.updateUser(baseDto, MOCK_CPF);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockUser, response.getBody());
-        verify(userService, times(1)).updateUser(baseDto, MOCK_CPF);
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(mockUser.getId(), response.getBody().data.id);
+        assertEquals(mockUser.getName(), response.getBody().data.name);
+        assertEquals(mockUser.getCpf(), response.getBody().data.cpf);
+        assertEquals(mockUser.getEmail(), response.getBody().data.email);
+        verify(userService, times(1)).updateUser(any(User.class), eq(MOCK_CPF));
     }
 
     @Test
     @DisplayName("PUT /{cpf} - Should return 500 INTERNAL_SERVER_ERROR on error")
     void updateUser_shouldReturnInternalServerErrorOnError() {
-        when(userService.updateUser(baseDto, MOCK_CPF)).thenThrow(new Error("Erro de validação."));
+        String errorMessage = "Erro de validação.";
+        when(userService.updateUser(any(User.class), eq(MOCK_CPF))).thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<User> response = controller.updateUser(baseDto, MOCK_CPF);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response = controller.updateUser(baseDto, MOCK_CPF);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals(null, response.getBody());
-        verify(userService, times(1)).updateUser(baseDto, MOCK_CPF);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(errorMessage, response.getBody().message);
+        verify(userService, times(1)).updateUser(any(User.class), eq(MOCK_CPF));
     }
 
 
@@ -129,22 +158,28 @@ class BaseUserControllerTest {
     void deleteUser_shouldReturnOkAndDeletedUser() {
         when(userService.deleteUser(MOCK_CPF)).thenReturn(mockUser);
 
-        ResponseEntity<User> response = controller.deleteUser(MOCK_CPF);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response = controller.deleteUser(MOCK_CPF);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockUser, response.getBody());
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(mockUser.getId(), response.getBody().data.id);
+        assertEquals(mockUser.getName(), response.getBody().data.name);
+        assertEquals(mockUser.getCpf(), response.getBody().data.cpf);
+        assertEquals(mockUser.getEmail(), response.getBody().data.email);
         verify(userService, times(1)).deleteUser(MOCK_CPF);
     }
 
     @Test
     @DisplayName("DELETE /{cpf} - Should return 500 INTERNAL_SERVER_ERROR on error")
     void deleteUser_shouldReturnInternalServerErrorOnError() {
-        when(userService.deleteUser(MOCK_CPF)).thenThrow(new Error("Usuário possui empréstimos."));
+        String errorMessage = "Usuário possui empréstimos.";
+        when(userService.deleteUser(MOCK_CPF)).thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<User> response = controller.deleteUser(MOCK_CPF);
+        ResponseEntity<BaseResponseDTO<UserResponseDTO>> response = controller.deleteUser(MOCK_CPF);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals(null, response.getBody());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        assertEquals(errorMessage, response.getBody().message);
         verify(userService, times(1)).deleteUser(MOCK_CPF);
     }
 }
