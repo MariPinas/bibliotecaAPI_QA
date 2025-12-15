@@ -51,13 +51,15 @@ public class UserService {
             throw new IllegalArgumentException("CPF inválido: segundo dígito verificador incorreto.");
         }
 
-        if (userRepository.findByCpf(cpf).isPresent()) {
-            throw new IllegalArgumentException("CPF já cadastrado: " + cpf);
-        }
     }
 
     @Transactional
     public User addUser(User user) {
+        if (userRepository.findByCpf(user.getCpf()).isPresent()) {
+            throw new IllegalArgumentException(
+                    "CPF já cadastrado: " + user.getCpf()
+            );
+        }
         checkCpf(user.getCpf());
         return userRepository.save(user);
     }
@@ -68,28 +70,24 @@ public class UserService {
 
 
     public User getUser(String cpf) {
-        final User user = userRepository.findByCpf(cpf).orElse(null);
+        User user = findByCpf(cpf);
         if (user == null) {
             throw new IllegalArgumentException("Usuário não encontrado com CPF: " + cpf);
         }
-
         return user;
     }
 
     @Transactional
     public User updateUser(User userFromDTO, String cpf) {
-        final User user = userRepository.findByCpf(cpf).orElse(null);
-        if (user == null) {
-            throw new IllegalArgumentException("Usuário não encontrado com CPF: " + cpf);
-        }
-
+        User user = findByCpf(cpf);
+        checkCpf(userFromDTO.getCpf());
         userFromDTO.setId(user.getId());
         return userRepository.save(userFromDTO);
     }
 
     @Transactional
     public User deleteUser(String cpf) {
-        final User user = userRepository.findByCpf(cpf).orElse(null);
+        User user = findByCpf(cpf);
         if (user == null) {
             throw new IllegalArgumentException("Usuário não encontrado com CPF: " + cpf);
         }
@@ -98,5 +96,10 @@ public class UserService {
         }
         userRepository.delete(user);
         return user;
+    }
+
+    public User findByCpf(String cpf) {
+        return userRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com CPF: " + cpf));
     }
 }

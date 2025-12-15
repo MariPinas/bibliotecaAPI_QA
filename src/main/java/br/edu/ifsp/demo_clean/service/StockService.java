@@ -52,17 +52,13 @@ public class StockService {
         return stock;
     }
 
-    public Stock updateStock(Stock stock) {
-        Optional<Stock> estoqueUpdate = stockRepository.findById(stock.getCode());
+    public Stock updateStock(StockRequestDTO stock) {
+        Stock stockUpdated = stockRepository.findById(stock.code)
+                .orElseThrow(() -> new IllegalArgumentException("Exemplar não encontrado"));
 
-        if (!estoqueUpdate.isEmpty()) {
-            Stock stockLocalizado = estoqueUpdate.get();
-            stockLocalizado.setAvailability(stock.getAvailability());
+        stockUpdated.setAvailability(stock.availability);
 
-            return stockRepository.save(stockLocalizado);
-        } else {
-            throw new IllegalArgumentException("Exemplar não encontrado");
-        }
+        return stockRepository.save(stockUpdated);
     }
 
     public Stock deleteStock(int id) {
