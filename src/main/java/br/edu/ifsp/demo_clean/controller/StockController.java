@@ -30,7 +30,7 @@ public class StockController extends BaseController {
     }
 
     @PutMapping
-    public ResponseEntity<BaseResponseDTO<StockResponseDTO>> updateStock(@RequestBody Stock stock) {
+    public ResponseEntity<BaseResponseDTO<StockResponseDTO>> updateStock(@RequestBody StockRequestDTO stock) {
         return handleRequest(() -> new StockResponseDTO(stockService.updateStock(stock)));
     }
 
