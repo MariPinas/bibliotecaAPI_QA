@@ -115,9 +115,13 @@ public class StockServiceTest {
     @DisplayName("updateStock - should update availability when stock exists")
     void updateStock_shouldUpdateStock() {
         Stock existing = new Stock(1, false, mock(Book.class));
-        Stock updated = new Stock(1, true, existing.getBook());
+        StockRequestDTO updated = new StockRequestDTO();
+        updated.code = existing.getCode();
+        updated.availability = true;
+        updated.isbn = existing.getBook().getIsbn();
 
-        when(stockRepository.findById(1)).thenReturn(Optional.of(existing));
+        when(stockRepository.findById(existing.getCode())).thenReturn(Optional.of(existing));
+        when(bookService.getBookByISBN(existing.getBook().getIsbn())).thenReturn(existing.getBook());
         when(stockRepository.save(any(Stock.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
@@ -130,7 +134,10 @@ public class StockServiceTest {
     @Test
     @DisplayName("updateStock - should throw when stock does not exist")
     void updateStock_shouldThrowWhenNotFound() {
-        Stock stock = new Stock(1, true, mock(Book.class));
+        StockRequestDTO stock = new StockRequestDTO();
+        stock.code = 1;
+        stock.availability = true;
+        stock.isbn =  mock(Book.class).getIsbn();
         when(stockRepository.findById(1)).thenReturn(Optional.empty());
 
         IllegalArgumentException ex = assertThrows(

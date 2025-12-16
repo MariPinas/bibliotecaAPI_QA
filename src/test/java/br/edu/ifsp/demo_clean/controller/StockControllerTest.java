@@ -113,33 +113,33 @@ public class StockControllerTest {
     @Test
     @DisplayName("PUT /library/stock")
     void updateStock_shouldReturnOk() {
-        when(stockService.updateStock(any(Stock.class))).thenReturn(mockStock);
+        when(stockService.updateStock(stockRequestDTO)).thenReturn(mockStock);
 
         ResponseEntity<BaseResponseDTO<StockResponseDTO>> response =
-                stockController.updateStock(mockStock);
+                stockController.updateStock(stockRequestDTO);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertNotNull(response.getBody().data);
 
-        verify(stockService, times(1)).updateStock(mockStock);
+        verify(stockService, times(1)).updateStock(stockRequestDTO);
     }
 
     @Test
     @DisplayName("PUT /library/stock")
     void updateStock_shouldReturnBadRequestOnError() {
         String errorMessage = "Exemplar não encontrado";
-        when(stockService.updateStock(any(Stock.class)))
+        when(stockService.updateStock(stockRequestDTO))
                 .thenThrow(new IllegalArgumentException(errorMessage));
 
         ResponseEntity<BaseResponseDTO<StockResponseDTO>> response =
-                stockController.updateStock(mockStock);
+                stockController.updateStock(stockRequestDTO);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(errorMessage, response.getBody().message);
 
-        verify(stockService, times(1)).updateStock(mockStock);
+        verify(stockService, times(1)).updateStock(stockRequestDTO);
     }
 
     @Test

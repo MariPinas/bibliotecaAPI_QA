@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="refactor: general adjustments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/controller/StockControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/controller/StockControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/StockServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +24,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -32,12 +38,12 @@
     &quot;assignee&quot;: &quot;MariPinas&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MariPinas/bibliotecaAPI_QA",
-    "accountId": "3e27d1ce-6c73-4df2-b4c9-db4668415acc"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MariPinas/bibliotecaAPI_QA&quot;,
+    &quot;accountId&quot;: &quot;3e27d1ce-6c73-4df2-b4c9-db4668415acc&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -53,6 +59,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.DemoCleanApplication.executor": "Run",
+    "JUnit.StockServiceTest.updateStock_shouldUpdateStock.executor": "Run",
+    "JUnit.UserServiceTest$GetUsersTests.getUser_ShouldThrowException_WhenUserDoesNotExist.executor": "Run",
+    "JUnit.UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave.executor": "Run",
+    "JUnit.java in demo_clean.executor": "Coverage",
     "Maven.demo_clean [clean].executor": "Run",
     "Maven.demo_clean [install].executor": "Run",
     "Maven.demo_clean [org.apache.maven.plugins:maven-clean-plugin:3.4.1:clean].executor": "Run",
@@ -69,7 +79,7 @@
     "Spring Boot.DemoCleanApplication.executor": "Run",
     "Spring Boot.Unnamed.executor": "Run",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "tests",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Usuario/Desktop/main",
@@ -93,7 +103,63 @@
       <recent name="br.edu.ifsp.demo_clean.controller" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave">
+    <configuration name="StockServiceTest.updateStock_shouldUpdateStock" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo_clean" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ifsp.demo_clean.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.edu.ifsp.demo_clean.service" />
+      <option name="MAIN_CLASS_NAME" value="br.edu.ifsp.demo_clean.service.StockServiceTest" />
+      <option name="METHOD_NAME" value="updateStock_shouldUpdateStock" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest$GetUsersTests.getUser_ShouldThrowException_WhenUserDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo_clean" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ifsp.demo_clean.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.edu.ifsp.demo_clean.service.UserServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="br.edu.ifsp.demo_clean.service.UserServiceTest$GetUsersTests" />
+      <option name="METHOD_NAME" value="getUser_ShouldThrowException_WhenUserDoesNotExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo_clean" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ifsp.demo_clean.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.edu.ifsp.demo_clean.service.UserServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="br.edu.ifsp.demo_clean.service.UserServiceTest$UpdateUserTests" />
+      <option name="METHOD_NAME" value="updateUser_ShouldSetIdAndSave" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in demo_clean" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo_clean" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="demo_clean" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="br.edu.ifsp.demo_clean.DemoCleanApplication" />
@@ -101,6 +167,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave" />
+        <item itemvalue="JUnit.UserServiceTest$GetUsersTests.getUser_ShouldThrowException_WhenUserDoesNotExist" />
+        <item itemvalue="JUnit.StockServiceTest.updateStock_shouldUpdateStock" />
+        <item itemvalue="JUnit.java in demo_clean" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -176,6 +250,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bibliotecaAPI_QA$java_in_demo_clean.ic" NAME="java in demo_clean Coverage Results" MODIFIED="1765905937730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
