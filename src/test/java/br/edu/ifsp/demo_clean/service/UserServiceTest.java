@@ -155,6 +155,7 @@ public class UserServiceTest {
             when(existingUser.getId()).thenReturn(10);
 
             User userFromDTO = mock(User.class);
+            when(userFromDTO.getCpf()).thenReturn(VALID_CPF);
 
             when(userRepository.findByCpf(VALID_CPF)).thenReturn(Optional.of(existingUser));
             when(userRepository.save(any(User.class))).thenReturn(userFromDTO);

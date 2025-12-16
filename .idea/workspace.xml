@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="refactor: general adjustments">
+    <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="fix: exceptions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/controller/StockControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/controller/StockControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/StockServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ifsp/demo_clean/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,45 +55,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DemoCleanApplication.executor": "Run",
-    "JUnit.StockServiceTest.updateStock_shouldUpdateStock.executor": "Run",
-    "JUnit.UserServiceTest$GetUsersTests.getUser_ShouldThrowException_WhenUserDoesNotExist.executor": "Run",
-    "JUnit.UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave.executor": "Run",
-    "JUnit.java in demo_clean.executor": "Coverage",
-    "Maven.demo_clean [clean].executor": "Run",
-    "Maven.demo_clean [install].executor": "Run",
-    "Maven.demo_clean [org.apache.maven.plugins:maven-clean-plugin:3.4.1:clean].executor": "Run",
-    "Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install-file].executor": "Run",
-    "Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install].executor": "Run",
-    "Maven.demo_clean [package].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.DemoCleanApplication.executor": "Run",
-    "Spring Boot.Unnamed.executor": "Run",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "tests",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Usuario/Desktop/main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DemoCleanApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockServiceTest.updateStock_shouldUpdateStock.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest$GetUsersTests.getUser_ShouldThrowException_WhenUserDoesNotExist.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in demo_clean.executor&quot;: &quot;Coverage&quot;,
+    &quot;Maven.demo_clean [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-clean-plugin:3.4.1:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install-file].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [org.apache.maven.plugins:maven-install-plugin:3.1.4:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo_clean [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DemoCleanApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;tests&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/Desktop/main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\maria\Desktop\all\programacao\bibliotecaAPI_QA" />
@@ -103,7 +102,15 @@
       <recent name="br.edu.ifsp.demo_clean.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave">
+  <component name="RunManager" selected="JUnit.All in demo_clean">
+    <configuration name="All in demo_clean" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo_clean" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StockServiceTest.updateStock_shouldUpdateStock" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo_clean" />
       <extension name="coverage">
@@ -169,10 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in demo_clean" />
+        <item itemvalue="JUnit.java in demo_clean" />
         <item itemvalue="JUnit.UserServiceTest$UpdateUserTests.updateUser_ShouldSetIdAndSave" />
         <item itemvalue="JUnit.UserServiceTest$GetUsersTests.getUser_ShouldThrowException_WhenUserDoesNotExist" />
         <item itemvalue="JUnit.StockServiceTest.updateStock_shouldUpdateStock" />
-        <item itemvalue="JUnit.java in demo_clean" />
       </list>
     </recent_temporary>
   </component>
@@ -252,7 +260,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/bibliotecaAPI_QA$java_in_demo_clean.ic" NAME="java in demo_clean Coverage Results" MODIFIED="1765905937730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/bibliotecaAPI_QA$java_in_demo_clean.ic" NAME="java in demo_clean Coverage Results" MODIFIED="1765908878754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
