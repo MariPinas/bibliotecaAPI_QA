@@ -56,6 +56,12 @@ public class StockService {
         Stock stockUpdated = stockRepository.findById(stock.code)
                 .orElseThrow(() -> new IllegalArgumentException("Exemplar não encontrado"));
 
+        Book book = bookService.getBookByISBN(stock.isbn);
+
+        if (book == null) {
+            throw new IllegalArgumentException("ERRO: Não existe um book com o ISBN informado!");
+        }
+
         stockUpdated.setAvailability(stock.availability);
 
         return stockRepository.save(stockUpdated);

@@ -28,6 +28,16 @@ public class BookService {
         }
     }
 
+    public void checkAuthorPublisherEditionBookAtual(BookRequestDTO bookRequestDTO) {
+        Book bookExistente = this.bookRepository.findByAuthorAndPublisherAndEdition(
+                bookRequestDTO.author,
+                bookRequestDTO.publisher,
+                bookRequestDTO.edition);
+        if (bookExistente != null && bookExistente.getIsbn() != bookRequestDTO.isbn) {
+            throw new IllegalArgumentException("ERRO: Combinação de Author, Editora e Edição Já cadastrados!!!");
+        }
+    }
+
     public Book addBook(BookRequestDTO bookRequestDTO) {
         checkISBN(bookRequestDTO.isbn);
         checkAuthorPublisherEdition(
@@ -64,11 +74,7 @@ public class BookService {
                 checkISBN(bookRequestDTO.isbn);
             }
 
-            checkAuthorPublisherEdition(
-                    bookRequestDTO.author,
-                    bookRequestDTO.publisher,
-                    bookRequestDTO.edition
-            );
+            checkAuthorPublisherEditionBookAtual(bookRequestDTO);
 
             bookAtual.setIsbn(bookRequestDTO.isbn);
             bookAtual.setTitle(bookRequestDTO.title);
