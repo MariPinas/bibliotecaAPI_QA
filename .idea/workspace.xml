@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="638a5e57-9ecc-4e45-83e0-9555d73b02e7" name="Changes" comment="refactor: general adjustments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/LibrarianController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/ProfessorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/dto/UserRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Librarian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Loan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Professor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/LoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ifsp/demo_clean/service/StockService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +32,12 @@
     &quot;assignee&quot;: &quot;MariPinas&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MariPinas/bibliotecaAPI_QA.git&quot;,
-    &quot;accountId&quot;: &quot;2945e9e2-a70d-4356-9939-c4ea1cf7fb13&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MariPinas/bibliotecaAPI_QA",
+    "accountId": "3e27d1ce-6c73-4df2-b4c9-db4668415acc"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -72,14 +64,15 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.DemoCleanApplication.executor": "Run",
-    "Spring Boot.Unnamed.executor": "Debug",
+    "Spring Boot.Unnamed.executor": "Run",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/aluno/Desktop/bibliotecaAPI_QA",
+    "last_opened_file_path": "C:/Users/Usuario/Desktop/main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,7 +95,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="bibliotecaAPI_QA" />
+      <module name="demo_clean" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="br.edu.ifsp.demo_clean.DemoCleanApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -127,6 +120,7 @@
       <updated>1758671400670</updated>
       <workItem from="1764898649687" duration="307000" />
       <workItem from="1764899366534" duration="12907000" />
+      <workItem from="1765894690695" duration="2035000" />
     </task>
     <task id="LOCAL-00001" summary="- Refactor de Controllers&#10;- getUserClass nos Controllers para dar ao service o tipo exato&#10;- Criação de Factory + Register para criação dinãmica dos tipos de User e tirar dependência de Enum de Categorias &#10;- Sem enum de Category tanto na criação quando para obter regras de empréstimo&#10;- Att dos lnks de Swagger/DataBase no README">
       <option name="closed" value="true" />
