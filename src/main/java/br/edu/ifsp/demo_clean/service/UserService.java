@@ -100,6 +100,6 @@ public class UserService {
 
     public User findByCpf(String cpf) {
         return userRepository.findByCpf(cpf)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com CPF: " + cpf));
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com CPF: " + cpf));
     }
 }
